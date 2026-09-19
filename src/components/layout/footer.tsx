@@ -11,7 +11,7 @@ export function Footer() {
       <Container className="py-14 sm:py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.9fr_1fr_0.8fr_1.2fr]">
           <div className="max-w-sm sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col items-start gap-2.5">
               <Logo />
               <span className="rounded-full border border-primary/20 bg-primary-tint px-2.5 py-0.5 text-[11px] font-semibold text-primary-darker">
                 Your data is yours

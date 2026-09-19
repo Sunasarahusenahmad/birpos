@@ -22,13 +22,13 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Contact form setup (Web3Forms)
 
-1. Go to https://web3forms.com and create an access key using **connect@birtiktech.com**.
+1. Go to https://web3forms.com and create an access key using **support@birstock.com**.
 2. Copy the key into `.env.local`:
    ```
    NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your-key-here
    ```
 3. Restart the dev server. Submissions from the Contact page and the footer newsletter form
-   will now arrive at connect@birtiktech.com. Until this key is set, forms will show a
+   will now arrive at support@birstock.com. Until this key is set, forms will show a
    friendly "not configured yet" error instead of failing silently.
 
 ## Project structure

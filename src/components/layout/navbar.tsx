@@ -35,8 +35,8 @@ export function Navbar() {
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "border-b border-border bg-white/85 backdrop-blur-md shadow-[0_1px_0_0_rgb(16_24_22_/_0.02)]"
-          : "border-b border-transparent bg-white/60 backdrop-blur-sm"
+          ? "border-b border-border bg-[#fffefa]/90 backdrop-blur-md shadow-[0_1px_0_0_rgb(28_25_23_/_0.04)]"
+          : "border-b border-transparent bg-[#fffefa]/75 backdrop-blur-sm"
       )}
     >
       <Container className="flex h-16 items-center justify-between sm:h-[4.5rem]">
@@ -94,7 +94,7 @@ export function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="overflow-hidden border-t border-border bg-white lg:hidden"
+            className="overflow-hidden border-t border-border bg-background lg:hidden"
           >
             <Container className="flex flex-col gap-1 py-4">
               {mainNav.map((item) => (

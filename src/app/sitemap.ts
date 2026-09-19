@@ -8,6 +8,9 @@ export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
+    "/offline-billing-software",
+    "/gst-billing-software",
+    "/billing-software-for-retail-shop",
     "/features",
     "/pricing",
     "/faq",
