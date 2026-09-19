@@ -1,14 +1,20 @@
-import { Zap, IndianRupee, CloudUpload, ReceiptText } from "lucide-react";
+import { ShieldCheck, Zap, IndianRupee, CloudUpload } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 
 const pillars = [
   {
+    icon: ShieldCheck,
+    title: "Your data is yours",
+    description:
+      "Your catalog, customer Khata, and sales records stay 100% on your local machine. No cloud vendor can see your margins, lock you out, or hike subscription prices.",
+  },
+  {
     icon: Zap,
     title: "Never stop billing",
     description:
-      "No internet? Slow Wi-Fi? Doesn't matter. BirPOS runs entirely on your computer with instant response times — your counter never freezes and your business never stops.",
+      "No internet? Slow Wi-Fi? Doesn't matter. BirStock runs entirely on your computer with instant response times - your counter never freezes and your business never stops.",
   },
   {
     icon: IndianRupee,
@@ -20,13 +26,7 @@ const pillars = [
     icon: CloudUpload,
     title: "Google Drive peace of mind",
     description:
-      "Get cloud-grade safety without cloud vulnerability. BirPOS automatically backs up your encrypted database to your own personal Google Drive, on your schedule.",
-  },
-  {
-    icon: ReceiptText,
-    title: "GST & Khata, built in",
-    description:
-      "From thermal supermarket receipts to formal A4 GST tax invoices and digital Udhar Khata ledgers — every Indian retail requirement, out of the box.",
+      "Get cloud-grade safety without cloud vulnerability. BirStock automatically backs up your encrypted database to your own personal Google Drive, on your schedule.",
   },
 ];
 
@@ -35,9 +35,9 @@ export function ValuePillars() {
     <section className="py-20 sm:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Why BirPOS"
-          title="Built different from cloud POS, on purpose"
-          description="Every design decision in BirPOS starts from one question: what actually helps a shop owner run their counter faster and keep more of what they earn?"
+          eyebrow="Our Core Promise"
+          title="Your data is yours. Built different from cloud POS."
+          description="Every design decision in BirStock starts from one premise: your business records belong to you, on your machine, never rented from a third-party server."
         />
 
         <StaggerGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">

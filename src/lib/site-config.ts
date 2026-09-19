@@ -1,9 +1,9 @@
 export const siteConfig = {
-  name: "BirPOS",
-  tagline: "The Fastest, Most Reliable POS & Inventory Software for Indian Businesses",
+  name: "BirStock",
+  tagline: "Your Data is Yours - Fast, Offline POS & Inventory Software",
   description:
-    "BirPOS is a 100% offline-first desktop POS, inventory & ERP system for retailers and wholesalers. Multi-rate GST billing, customer Khata, supplier management, and automated Google Drive backup — with zero monthly fees.",
-  url: "https://birpos.birtiktech.com",
+    "BirStock is a 100% offline-first desktop POS, inventory & ERP system for retailers and wholesalers. Multi-rate GST billing, customer Khata, supplier management, and automated Google Drive backup - with zero monthly fees.",
+  url: "https://birstock.birtiktech.com",
   company: "Birtik Tech",
   email: "connect@birtiktech.com",
   phone: "+91 81560 00337",
@@ -21,12 +21,15 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/birtiktech",
   },
   keywords: [
+    "BirStock",
+    "BirStock POS",
     "POS software India",
     "offline POS software",
     "billing software for retail shops",
     "GST billing software",
     "inventory management software",
     "kirana store billing software",
+    "supermarket POS software",
     "customer khata app",
     "wholesale billing software",
     "desktop POS software",
@@ -36,6 +39,7 @@ export const siteConfig = {
 
 export const mainNav = [
   { label: "Features", href: "/features" },
+  { label: "Industries", href: "/industries/supermarkets" },
   { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "/faq" },
   { label: "About", href: "/about" },
@@ -48,6 +52,14 @@ export const footerNav = {
     { label: "Pricing", href: "/pricing" },
     { label: "Download", href: "/contact?type=download" },
     { label: "Request a Demo", href: "/contact?type=demo" },
+  ],
+  industries: [
+    { label: "Supermarkets", href: "/industries/supermarkets" },
+    { label: "Kirana & Grocery", href: "/industries/kirana-grocery" },
+    { label: "Electronics & Mobile", href: "/industries/electronics-mobile" },
+    { label: "Hardware & Sanitary", href: "/industries/hardware-sanitary" },
+    { label: "Apparel & Footwear", href: "/industries/apparel-footwear" },
+    { label: "Wholesale Distributors", href: "/industries/wholesale" },
   ],
   company: [
     { label: "About Us", href: "/about" },

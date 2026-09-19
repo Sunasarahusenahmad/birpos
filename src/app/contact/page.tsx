@@ -10,7 +10,7 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with the BirPOS team — request a download, schedule a live demo, ask about pricing, or get support. Based in Banaskantha, Gujarat.",
+    "Get in touch with the BirStock team - request a download, schedule a live demo, ask about pricing, or get support. Based in Banaskantha, Gujarat.",
   alternates: { canonical: "/contact" },
 };
 
@@ -22,7 +22,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Let's get your counter set up"
-        description="Request a download, book a live demo, or ask us anything — we typically reply within one business day."
+        description="Request a download, book a live demo, or ask us anything - we typically reply within one business day."
       />
 
       <section className="pb-24 sm:pb-28">
@@ -61,7 +61,7 @@ export default function ContactPage() {
 
               <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border">
                 <iframe
-                  title="BirPOS office location"
+                  title="BirStock office location"
                   src={`https://maps.google.com/maps?q=${mapQuery}&output=embed`}
                   width="100%"
                   height="260"

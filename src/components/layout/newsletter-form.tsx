@@ -18,7 +18,7 @@ export function NewsletterForm() {
     setError("");
     try {
       await submitToWeb3Forms({
-        subject: "New BirPOS newsletter signup",
+        subject: "New BirStock newsletter signup",
         email,
         message: `New newsletter subscriber: ${email}`,
         inquiry_type: "Newsletter Signup",

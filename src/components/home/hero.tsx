@@ -6,10 +6,10 @@ import { Reveal } from "@/components/motion/reveal";
 import { PosMockup } from "@/components/home/pos-mockup";
 
 const trustPoints = [
+  { icon: ShieldCheck, label: "Your Data is Yours" },
   { icon: WifiOff, label: "100% Offline-First" },
   { icon: IndianRupee, label: "Zero Monthly Fees" },
   { icon: CloudUpload, label: "Google Drive Backup" },
-  { icon: ShieldCheck, label: "GST Compliant Billing" },
 ];
 
 export function Hero() {
@@ -22,13 +22,18 @@ export function Hero() {
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
           <div className="flex flex-col items-start text-left">
             <Reveal>
-              <Badge>Built for Indian Retailers &amp; Wholesalers</Badge>
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary-tint px-3.5 py-1.5 text-xs font-semibold text-primary-darker shadow-sm sm:text-sm">
+                <ShieldCheck className="h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} />
+                <span className="font-extrabold tracking-tight">Your Data is Yours</span>
+                <span className="text-primary/30">·</span>
+                <span className="font-medium text-foreground/80">100% Offline-First POS &amp; ERP</span>
+              </div>
             </Reveal>
 
             <Reveal delay={0.08}>
               <h1 className="text-balance mt-5 font-display text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-[3.4rem] lg:leading-[1.08]">
-                The fastest, most reliable{" "}
-                <span className="text-primary">POS &amp; inventory</span> software for your
+                Your data is yours.{" "}
+                <span className="text-primary">Fast, offline POS &amp; inventory</span> for your
                 store
               </h1>
             </Reveal>
@@ -36,7 +41,7 @@ export function Hero() {
             <Reveal delay={0.16}>
               <p className="text-balance mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
                 100% offline desktop billing, multi-rate GST invoicing, customer Khata, supplier
-                ledgers, and automated Google Drive backup — one app, zero recurring
+                ledgers, and automated Google Drive backup - one app, zero recurring
                 subscription.
               </p>
             </Reveal>

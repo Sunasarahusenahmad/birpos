@@ -11,7 +11,7 @@ export function Logo({
   return (
     <Link
       href="/"
-      aria-label="BirPOS home"
+      aria-label="BirStock home"
       className={cn("group inline-flex items-center", className)}
     >
       <span
@@ -20,7 +20,7 @@ export function Logo({
           wordmarkClassName
         )}
       >
-        Bir<span className="text-primary">POS</span>
+        Bir<span className="text-primary">Stock</span>
       </span>
     </Link>
   );

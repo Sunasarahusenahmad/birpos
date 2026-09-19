@@ -14,7 +14,7 @@ export function FeaturesGrid() {
         <SectionHeading
           eyebrow="Everything in one app"
           title="One desktop app, every module your counter needs"
-          description="No add-ons, no per-module pricing. Explore what each part of BirPOS actually does."
+          description="No add-ons, no per-module pricing. Explore what each part of BirStock actually does."
         />
 
         <StaggerGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

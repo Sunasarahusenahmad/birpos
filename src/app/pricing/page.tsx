@@ -12,14 +12,14 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "BirPOS is a one-time purchase, not a monthly subscription. Compare Starter, Growth, and Enterprise plans and request a quote for your store.",
+    "BirStock is a one-time purchase, not a monthly subscription. Compare Starter, Growth, and Enterprise plans and request a quote for your store.",
   alternates: { canonical: "/pricing" },
 };
 
 const pricingFaqs = [
   {
-    q: "Is BirPOS really a one-time purchase?",
-    a: "Yes. You purchase a BirPOS license once per business — there's no forced monthly or annual subscription to keep billing.",
+    q: "Is BirStock really a one-time purchase?",
+    a: "Yes. You purchase a BirStock license once per business - there's no forced monthly or annual subscription to keep billing.",
   },
   {
     q: "How do I get exact pricing for my store?",
@@ -27,7 +27,7 @@ const pricingFaqs = [
   },
   {
     q: "Do you offer a free trial?",
-    a: "Yes — request a demo and our team will set you up with a trial build so you can bill real transactions before you commit.",
+    a: "Yes - request a demo and our team will set you up with a trial build so you can bill real transactions before you commit.",
   },
   {
     q: "Is support included?",

@@ -10,7 +10,7 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
-    "Answers to common questions about BirPOS — offline billing, GST invoicing, customer Khata, Google Drive backup, hardware compatibility, and pricing.",
+    "Answers to common questions about BirStock - offline billing, GST invoicing, customer Khata, Google Drive backup, hardware compatibility, and pricing.",
   alternates: { canonical: "/faq" },
 };
 
@@ -35,7 +35,7 @@ export default function FaqPage() {
       <PageHero
         eyebrow="Support"
         title="Frequently asked questions"
-        description="Everything shop owners ask us before switching to BirPOS. Still stuck? Reach out directly."
+        description="Everything shop owners ask us before switching to BirStock. Still stuck? Reach out directly."
       />
 
       <section className="pb-20 sm:pb-28">

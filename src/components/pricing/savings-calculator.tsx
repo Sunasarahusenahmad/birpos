@@ -19,7 +19,7 @@ export function SavingsCalculator() {
           </h3>
           <p className="mx-auto max-w-lg text-sm text-muted-foreground">
             A typical cloud POS subscription runs around &#8377;{CLOUD_MONTHLY_COST.toLocaleString("en-IN")}
-            /month. BirPOS is a one-time purchase — here&apos;s the gap over time.
+            /month. See how recurring fees accumulate over time compared to BirStock.
           </p>
         </div>
 
@@ -53,16 +53,16 @@ export function SavingsCalculator() {
             <p className="mt-2 font-display text-3xl font-extrabold text-foreground">
               &#8377;{cloudCost.toLocaleString("en-IN")}
             </p>
-            <p className="mt-1 text-xs text-muted-foreground">over {years} years, recurring</p>
+            <p className="mt-1 text-xs text-muted-foreground">over {years} years, recurring fees</p>
           </div>
           <div className="rounded-[var(--radius-md)] border border-primary-tint-strong bg-primary-tint p-5 text-center">
             <p className="text-xs font-semibold uppercase tracking-wide text-primary-darker">
-              BirPOS
+              BirStock
             </p>
             <p className="mt-2 font-display text-3xl font-extrabold text-primary-darker">
-              One-time
+              Transparent
             </p>
-            <p className="mt-1 text-xs text-primary-darker/80">purchased once, yours forever</p>
+            <p className="mt-1 text-xs text-primary-darker/80">no forced monthly charges</p>
           </div>
         </div>
 

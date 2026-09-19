@@ -16,7 +16,7 @@ export async function submitToWeb3Forms(payload: Web3FormsPayload) {
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
       access_key: WEB3FORMS_ACCESS_KEY,
-      from_name: "BirPOS Website",
+      from_name: "BirStock Website",
       ...payload,
     }),
   });

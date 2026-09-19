@@ -12,12 +12,12 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Features",
   description:
-    "Explore every module inside BirPOS — keyboard & touch POS billing, inventory, customer Khata, supplier management, GST invoicing, Google Drive backup, reports, security, and financial year management.",
+    "Explore every module inside BirStock - keyboard & touch POS billing, inventory, customer Khata, supplier management, GST invoicing, Google Drive backup, reports, security, and financial year management.",
   alternates: { canonical: "/features" },
   openGraph: {
     title: `Features | ${siteConfig.name}`,
     description:
-      "Every module BirPOS ships with — billing, inventory, Khata, GST, backup, reports, and more.",
+      "Every module BirStock ships with - billing, inventory, Khata, GST, backup, reports, and more.",
     url: `${siteConfig.url}/features`,
   },
 };
@@ -28,7 +28,7 @@ export default function FeaturesPage() {
       <PageHero
         eyebrow="Product"
         title="One app. Every module your counter needs."
-        description="From the first barcode scan to your nightly Google Drive backup, explore exactly how each part of BirPOS works."
+        description="From the first barcode scan to your nightly Google Drive backup, explore exactly how each part of BirStock works."
       />
 
       <section className="pb-20 sm:pb-28">

@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Refund Policy",
-  description: `Refund terms for BirPOS software licenses purchased from ${siteConfig.company}.`,
+  description: `Refund terms for BirStock software licenses purchased from ${siteConfig.company}.`,
   alternates: { canonical: "/refund-policy" },
   robots: { index: true, follow: true },
 };
@@ -15,7 +15,7 @@ export default function RefundPolicyPage() {
       <div>
         <h2>Trial before you buy</h2>
         <p>
-          Because BirPOS is a one-time software purchase, we encourage every business to request
+          Because BirStock is a one-time software purchase, we encourage every business to request
           a live demo or trial build before purchasing, so you can confirm it fits how your
           counter operates.
         </p>
@@ -24,7 +24,7 @@ export default function RefundPolicyPage() {
       <div>
         <h2>Refund eligibility</h2>
         <p>
-          If BirPOS does not work as described on this website due to a verified defect in the
+          If BirStock does not work as described on this website due to a verified defect in the
           software, and our support team is unable to resolve the issue within a reasonable
           time, you may request a refund within 7 days of purchase.
         </p>

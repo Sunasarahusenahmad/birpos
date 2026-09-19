@@ -4,13 +4,13 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/motion/reveal";
 
 const rows = [
-  { label: "Works with no internet connection", cloud: false, birpos: true },
-  { label: "Zero recurring subscription fees", cloud: false, birpos: true },
-  { label: "Data stays 100% private on your machine", cloud: false, birpos: true },
-  { label: "Automated backup to your own Google Drive", cloud: false, birpos: true },
-  { label: "Instant, lag-free barcode billing", cloud: false, birpos: true },
-  { label: "Hold cart & multi-counter billing", cloud: false, birpos: true },
-  { label: "Multi-year financial isolation with carry-forward", cloud: false, birpos: true },
+  { label: "Works with no internet connection", cloud: false, birstock: true },
+  { label: "Zero recurring subscription fees", cloud: false, birstock: true },
+  { label: "Data stays 100% private on your machine", cloud: false, birstock: true },
+  { label: "Automated backup to your own Google Drive", cloud: false, birstock: true },
+  { label: "Instant, lag-free barcode billing", cloud: false, birstock: true },
+  { label: "Hold cart & multi-counter billing", cloud: false, birstock: true },
+  { label: "Multi-year financial isolation with carry-forward", cloud: false, birstock: true },
 ];
 
 export function Comparison() {
@@ -18,9 +18,9 @@ export function Comparison() {
     <section className="py-20 sm:py-28">
       <Container>
         <SectionHeading
-          eyebrow="BirPOS vs. Cloud POS"
+          eyebrow="BirStock vs. Cloud POS"
           title="One-time ownership beats another monthly bill"
-          description="Cloud POS tools are built around a subscription. BirPOS is built around your counter."
+          description="Cloud POS tools are built around a subscription. BirStock is built around your counter."
         />
 
         <Reveal delay={0.1} className="mt-14">
@@ -31,7 +31,7 @@ export function Comparison() {
                 Cloud POS
               </span>
               <span className="w-20 text-center text-sm font-semibold text-primary-darker sm:w-28">
-                BirPOS
+                BirStock
               </span>
             </div>
 

@@ -9,9 +9,14 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-surface-muted">
       <Container className="py-14 sm:py-16">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
-          <div className="max-w-sm">
-            <Logo />
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.9fr_1fr_0.8fr_1.2fr]">
+          <div className="max-w-sm sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center gap-3">
+              <Logo />
+              <span className="rounded-full border border-primary/20 bg-primary-tint px-2.5 py-0.5 text-[11px] font-semibold text-primary-darker">
+                Your data is yours
+              </span>
+            </div>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               {siteConfig.description}
             </p>
@@ -38,12 +43,13 @@ export function Footer() {
           </div>
 
           <FooterCol title="Product" links={footerNav.product} />
+          <FooterCol title="Industries" links={footerNav.industries} />
           <FooterCol title="Company" links={footerNav.company} />
 
           <div>
             <p className="text-sm font-semibold text-foreground">Stay in the loop</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Product updates, new feature drops, and retail-tech tips — no spam.
+              Product updates, new feature drops, and retail-tech tips - no spam.
             </p>
             <NewsletterForm />
           </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ArrowLeft, Check } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { FeatureIcon } from "@/components/ui/feature-icon";
@@ -11,6 +11,7 @@ import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { FinalCta } from "@/components/home/final-cta";
 import { features, getFeature } from "@/data/features";
 import { siteConfig } from "@/lib/site-config";
+import { FeaturePreviewDispatcher } from "@/components/features/interactive-previews/feature-preview-dispatcher";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -102,6 +103,29 @@ export default async function FeatureDetailPage({ params }: Props) {
               </Reveal>
             </div>
           </div>
+        </Container>
+      </section>
+
+      {/* Live Interactive Software Simulator */}
+      <section className="pb-16 sm:pb-20">
+        <Container>
+          <Reveal>
+            <div className="mb-8 flex flex-col items-center text-center">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-tint px-3 py-1 text-xs font-bold text-primary-darker">
+                <Sparkles className="h-3.5 w-3.5" /> Interactive Workflow Simulation
+              </span>
+              <h2 className="mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl">
+                See {feature.shortName} in Action
+              </h2>
+              <p className="mt-2 max-w-lg text-sm text-muted-foreground">
+                Interact with the native interface below to see how BirStock operates at your counter - instant local execution, automated guard rails, and zero lag.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <FeaturePreviewDispatcher slug={feature.slug} />
+          </Reveal>
         </Container>
       </section>
 

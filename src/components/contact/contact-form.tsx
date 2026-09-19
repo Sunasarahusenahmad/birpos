@@ -34,7 +34,7 @@ export function ContactForm() {
 
     try {
       await submitToWeb3Forms({
-        subject: `BirPOS website: ${inquiryLabel}${plan ? ` (${plan} plan)` : ""}`,
+        subject: `BirStock website: ${inquiryLabel}${plan ? ` (${plan} plan)` : ""}`,
         name: String(data.get("name") ?? ""),
         email: String(data.get("email") ?? ""),
         phone: String(data.get("phone") ?? ""),
@@ -57,7 +57,7 @@ export function ContactForm() {
         <CheckCircle2 className="h-12 w-12 text-primary-darker" strokeWidth={1.5} />
         <h3 className="mt-4 font-display text-xl font-bold text-foreground">Message sent!</h3>
         <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-          Thanks for reaching out — our team will get back to you within one business day.
+          Thanks for reaching out - our team will get back to you within one business day.
         </p>
         <button
           type="button"

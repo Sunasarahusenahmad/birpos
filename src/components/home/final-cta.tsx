@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
@@ -11,11 +11,14 @@ export function FinalCta() {
           <div className="relative overflow-hidden rounded-[var(--radius-xl)] bg-gradient-to-br from-primary-darker via-primary to-primary-dark px-6 py-16 text-center sm:px-16 sm:py-20">
             <div className="bg-grid pointer-events-none absolute inset-0 opacity-[0.12] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)]" />
             <div className="relative">
+              <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3.5 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                <ShieldCheck className="h-3.5 w-3.5" /> Your Data is Yours
+              </span>
               <h2 className="text-balance mx-auto max-w-2xl font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                Ready to run your counter without the internet — or the invoice?
+                Ready to run your counter without the internet - or the invoice?
               </h2>
               <p className="text-balance mx-auto mt-4 max-w-xl text-base text-white/85 sm:text-lg">
-                Download BirPOS and bill your first customer in under an hour, or book a live
+                Download BirStock and bill your first customer in under an hour, or book a live
                 walkthrough with our team.
               </p>
               <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">

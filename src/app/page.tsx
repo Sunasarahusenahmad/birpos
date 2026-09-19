@@ -11,7 +11,7 @@ import { FinalCta } from "@/components/home/final-cta";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} — Offline POS, Inventory & GST Billing Software`,
+  title: `${siteConfig.name} - Offline POS, Inventory & GST Billing Software`,
   description: siteConfig.description,
   alternates: { canonical: "/" },
 };

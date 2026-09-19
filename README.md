@@ -1,6 +1,6 @@
-# BirPOS Marketing Website
+# BirStock Marketing Website
 
-Marketing/landing site for **BirPOS** — an offline-first desktop POS, inventory & GST billing
+Marketing/landing site for **BirStock** — an offline-first desktop POS, inventory & GST billing
 app for Indian retailers and wholesalers. Built by Birtik Tech.
 
 ## Stack
@@ -53,7 +53,7 @@ All contact info, nav links, and site metadata live in `src/lib/site-config.ts` 
 it propagates to the navbar, footer, contact page, and structured metadata.
 
 The logo is currently a placeholder letter-mark (`src/components/ui/logo.tsx`) — swap in the
-real BirPOS logo when it's ready.
+real BirStock logo when it's ready.
 
 ## Deployment
 
