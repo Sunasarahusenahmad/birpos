@@ -368,7 +368,7 @@ def post_square(W=1080, H=1080):
     for ln in wrap("Offline POS · GST invoices · Khata · Inventory · Google Drive backup · Mobile App", 30, 860, "inter", 500):
         body += text_path(ln, W / 2, y, 30, family="inter", weight=500, fill=MUTED, anchor="middle")
         y += 44
-    chips = ["₹799/month", "₹2,999/year", "₹12,999 lifetime"]
+    chips = ["Works offline", "GST invoices", "Mobile app"]
     widths = [measure(c, 28, "inter", 700) + 28 * 1.6 for c in chips]
     cx = (W - sum(widths) - 16 * 2) / 2
     for c, w in zip(chips, widths):
@@ -447,6 +447,99 @@ def build_social():
     raster(p, os.path.join(d, "email", "email-signature-1200x320.png"), 1200, 320)
 
 
+# Instagram story highlight covers. Instagram crops the cover to a circle from the
+# centre, so the icon sits well inside the middle of the canvas.
+HIGHLIGHTS = [
+    ("features", "layout-grid"),
+    ("pricing", "badge-indian-rupee"),
+    ("mobile-app", "smartphone"),
+    ("gst-billing", "receipt-text"),
+    ("khata", "book-user"),
+    ("inventory", "boxes"),
+    ("offline", "wifi-off"),
+    ("customisation", "puzzle"),
+    ("clients", "handshake"),
+    ("demo", "monitor-play"),
+    ("reviews", "star"),
+    ("contact", "phone"),
+]
+
+
+def highlight_svg(icon: str, style: str, W: int, H: int) -> str:
+    cx, cy = W / 2, H / 2
+    r = min(W, H) * 0.36  # inner disc - stays inside the circular crop
+    if style == "orange":
+        bg = (f'<linearGradient id="hlBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7883a"/>'
+              f'<stop offset="1" stop-color="{ORANGE_DARK}"/></linearGradient>')
+        body = f'<defs>{bg}</defs><rect width="{W}" height="{H}" fill="url(#hlBg)"/>'
+        body += f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="#ffffff" fill-opacity="0.16"/>'
+        body += f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="#ffffff" stroke-opacity="0.45" stroke-width="{r * 0.02:.1f}"/>'
+        color = WHITE
+    elif style == "dark":
+        body = f'<rect width="{W}" height="{H}" fill="{INK_SOFT}"/>'
+        body += f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="url(#bsGrad)" stroke-width="{r * 0.03:.1f}"/>'
+        color = ORANGE
+    else:  # cream
+        body = f'<rect width="{W}" height="{H}" fill="{CREAM}"/>'
+        body += f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="#fff1e6" stroke="#fbd5bb" stroke-width="{r * 0.02:.1f}"/>'
+        color = ORANGE
+    isz = r * 1.0
+    body += lucide(icon, cx - isz / 2, cy - isz / 2, isz, color, stroke=2.1)
+    return svg_doc(W, H, body, title=f"BirStock highlight - {icon}")
+
+
+def build_highlights():
+    d = os.path.join(BRAND, "social", "instagram", "highlights")
+    for style in ("orange", "dark", "cream"):
+        for name, icon in HIGHLIGHTS:
+            sq = write(os.path.join(SRC, "highlights", f"{style}-{name}.svg"), highlight_svg(icon, style, 1080, 1080))
+            raster(sq, os.path.join(d, style, f"highlight-{name}-1080.png"), 1080)
+            tall = write(os.path.join(SRC, "highlights", f"{style}-{name}-story.svg"), highlight_svg(icon, style, 1080, 1920))
+            raster(tall, os.path.join(d, style, "story-size", f"highlight-{name}-1080x1920.png"), 1080, 1920)
+
+
+def build_posts():
+    """LinkedIn featured posts, using live prices/phone from the site source."""
+    import re
+    from posts import POSTS, post_svg
+
+    pricing_src = open(os.path.join(ROOT, "src", "data", "pricing.ts"), encoding="utf8").read()
+    prices = {pid: int(v) for pid, v in re.findall(r'id: "(\w+)",\s*name: "\w+",\s*price: (\d+)', pricing_src)}
+    cfg = open(os.path.join(ROOT, "src", "lib", "site-config.ts"), encoding="utf8").read()
+    phone = re.search(r'phoneDisplay: "([^"]+)"', cfg).group(1)
+    email = re.search(r'email: "([^"]+)"', cfg).group(1)
+
+    def inr(n):
+        s = str(n)
+        if len(s) <= 3:
+            return "₹" + s
+        head, tail = s[:-3], s[-3:]
+        parts = []
+        while len(head) > 2:
+            parts.insert(0, head[-2:])
+            head = head[:-2]
+        if head:
+            parts.insert(0, head)
+        return "₹" + ",".join(parts) + "," + tail
+
+    plans = [
+        {"name": "Monthly", "price": inr(prices["monthly"]), "period": "per month", "note": "Full desktop app", "highlight": False},
+        {"name": "Yearly", "price": inr(prices["yearly"]), "period": "per year", "note": "Desktop + Android & iOS app", "highlight": True},
+        {"name": "Lifetime", "price": inr(prices["lifetime"]), "period": "one-time", "note": "Permanent licence", "highlight": False},
+    ]
+    cdir = os.path.join(PUBLIC, "clients")
+    clients = [
+        {"name": "iQiP", "logo": os.path.join(cdir, "iqip-logo.svg"), "tag": "Custom build · IP advisory"},
+        {"name": "Ansi Techno", "logo": os.path.join(cdir, "ansi-techno-logo.png"), "tag": "IT, CCTV & laptops"},
+        {"name": "Birtik Tech", "logo": os.path.join(cdir, "birtiktech-logo.png"), "tag": "Software & web development"},
+    ]
+    d = os.path.join(BRAND, "social", "linkedin", "posts")
+    for post in POSTS:
+        svg = post_svg(post, plans=plans, clients=clients, phone=phone, email=email)
+        p = write(os.path.join(SRC, "posts", f"{post['key']}.svg"), svg)
+        raster(p, os.path.join(d, f"post-{post['key']}-1080x1350.png"), 1080, 1350)
+
+
 def main():
     if os.path.isdir(SRC):
         shutil.rmtree(SRC)
@@ -454,6 +547,8 @@ def main():
     build_favicons()
     build_og()
     build_social()
+    build_highlights()
+    build_posts()
     jobs_file = os.path.join(SRC, "jobs.json")
     write(jobs_file, json.dumps(jobs))
     subprocess.run(["node", os.path.join(HERE, "rasterize.mjs"), jobs_file], check=True, cwd=ROOT)
