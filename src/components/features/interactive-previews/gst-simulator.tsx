@@ -51,7 +51,7 @@ export function GstSimulator() {
               BirStock Multi-Rate GST &amp; Compliance Invoicing Engine
             </h4>
             <p className="text-[0.68rem] text-muted-foreground">
-              Automatic CGST/SGST/IGST breakdown, HSN/SAC, and printer formatting
+              CGST/SGST/IGST breakdown and thermal/A4 layouts (illustrative demo)
             </p>
           </div>
         </div>
@@ -181,7 +181,7 @@ export function GstSimulator() {
           <div className="space-y-3">
             <div className="flex items-center justify-between border-b border-border pb-2.5">
               <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                Live Printer Template Preview
+                Print Template Preview
               </span>
               {/* Format selector */}
               <div className="flex gap-1">
@@ -254,7 +254,7 @@ export function GstSimulator() {
           </div>
 
           <div className="mt-4 flex items-center justify-center gap-1.5 text-center text-xs font-semibold text-primary">
-            <Printer className="h-3.5 w-3.5" /> Auto-detects 80mm/58mm thermal &amp; A4 laser printers
+            <Printer className="h-3.5 w-3.5" /> Choose 58mm/80mm thermal or A4 layout in Settings
           </div>
         </div>
       </div>

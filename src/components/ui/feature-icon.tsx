@@ -8,6 +8,10 @@ import {
   BarChart3,
   ShieldCheck,
   CalendarClock,
+  Smartphone,
+  Wallet,
+  Undo2,
+  Building2,
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -23,6 +27,10 @@ const iconMap: Record<Feature["icon"], LucideIcon> = {
   reports: BarChart3,
   security: ShieldCheck,
   "financial-year": CalendarClock,
+  mobile: Smartphone,
+  expenses: Wallet,
+  returns: Undo2,
+  company: Building2,
 };
 
 export function FeatureIcon({

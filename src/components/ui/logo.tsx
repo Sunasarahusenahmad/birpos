@@ -18,12 +18,12 @@ export function Logo({
       className={cn("group inline-flex items-center transition-opacity hover:opacity-95", className)}
     >
       <Image
-        src="/birstock-logo-transparent.png"
-        alt="BirStock - Offline POS & Inventory Software"
-        width={320}
-        height={80}
+        src="/brand/logo/birstock-logo.svg"
+        alt="BirStock"
+        width={604}
+        height={100}
         priority
-        className={cn("h-8 w-auto sm:h-9 object-contain", imageClassName, wordmarkClassName)}
+        className={cn("h-7 w-auto sm:h-8 object-contain", imageClassName, wordmarkClassName)}
       />
     </Link>
   );

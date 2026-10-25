@@ -15,6 +15,12 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const current = pathname.replace(/\/$/, "") || "/";
+  // Most specific nav item wins, so /features/mobile-app highlights "Mobile App" not "Features".
+  const activeHref = [...mainNav]
+    .map((item) => item.href as string)
+    .filter((href) => current === href || current.startsWith(href + "/"))
+    .sort((a, b) => b.length - a.length)[0];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -44,7 +50,7 @@ export function Navbar() {
 
         <nav className="hidden items-center gap-1 lg:flex">
           {mainNav.map((item) => {
-            const active = pathname === item.href || pathname.startsWith(item.href + "/");
+            const active = activeHref === item.href;
             return (
               <Link
                 key={item.href}
@@ -72,7 +78,7 @@ export function Navbar() {
           <ButtonLink href="/contact?type=demo" variant="ghost" size="sm">
             Schedule Demo
           </ButtonLink>
-          <ButtonLink href="/contact?type=download" variant="primary" size="sm">
+          <ButtonLink href="/download" variant="primary" size="sm">
             Download Now
           </ButtonLink>
         </div>
@@ -117,7 +123,7 @@ export function Navbar() {
                   Schedule Demo
                 </ButtonLink>
                 <ButtonLink
-                  href="/contact?type=download"
+                  href="/download"
                   variant="primary"
                   className="justify-center"
                   onClick={() => setOpen(false)}

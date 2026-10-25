@@ -8,7 +8,7 @@ import {
   Unlock,
   KeyRound,
   Mail,
-  Clock,
+  Wifi,
   RotateCcw,
   CheckCircle2,
 } from "lucide-react";
@@ -18,7 +18,7 @@ export function SecuritySimulator() {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
-  const [isAutoLocked, setIsAutoLocked] = useState(false);
+  const [isManuallyLocked, setIsManuallyLocked] = useState(false);
 
   const CORRECT_PIN = "1379";
 
@@ -55,17 +55,17 @@ export function SecuritySimulator() {
           </div>
           <div>
             <h4 className="text-xs font-bold text-foreground sm:text-sm">
-              BirStock Master PIN &amp; Terminal Lockout Simulator
+              BirStock PIN App Lock
             </h4>
             <p className="text-[0.68rem] text-muted-foreground">
-              Master PIN authorization, inactivity auto-lock &amp; SMTP email OTP recovery
+              PIN at startup, manual lock &amp; email OTP PIN reset (illustrative demo)
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-1 rounded-full bg-slate-200 px-2.5 py-0.5 text-xs font-mono font-bold text-slate-800">
-            Hint PIN: 1 3 7 9
+            Demo PIN: 1 3 7 9
           </span>
         </div>
       </div>
@@ -80,10 +80,10 @@ export function SecuritySimulator() {
 
             <div>
               <p className="text-sm font-bold text-foreground">
-                {isUnlocked ? "Dashboard & Reports Unlocked" : "Enter 4-Digit Master Security PIN"}
+                {isUnlocked ? "BirStock Unlocked" : "Enter your App Lock PIN"}
               </p>
               <p className="text-[0.68rem] text-muted-foreground">
-                Protects financial data, price modifications &amp; settings
+                Shown when BirStock starts (if enabled) or after you lock it
               </p>
             </div>
 
@@ -151,47 +151,47 @@ export function SecuritySimulator() {
                 animate={{ opacity: 1, y: 0 }}
                 className="rounded-md bg-emerald-100 p-2 text-xs font-bold text-emerald-800"
               >
-                ✓ PIN Verified. Full administrative privileges granted.
+                ✓ PIN verified. BirStock is unlocked.
               </motion.div>
             )}
           </div>
         </div>
 
-        {/* Right Column: Inactivity Timer & Recovery Flow */}
+        {/* Right Column: Manual Lock & Recovery Flow */}
         <div className="flex flex-col justify-between bg-slate-50/60 p-4 sm:p-6 space-y-4">
           <div className="space-y-4">
             <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              Fail-Safe Security Features
+              App Lock Options
             </span>
 
-            {/* Inactivity Screen Lock Feature */}
+            {/* Manual Lock */}
             <div className="rounded-lg border border-border bg-white p-3.5 space-y-2 shadow-xs">
               <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-primary" />
-                <p className="text-xs font-bold text-foreground">Inactivity Timeout Auto-Lock</p>
+                <Lock className="h-4 w-4 text-primary" />
+                <p className="text-xs font-bold text-foreground">Lock Now</p>
               </div>
               <p className="text-[0.68rem] text-muted-foreground leading-relaxed">
-                Prevents unauthorized billing or tampering when cashiers step away from the register.
+                Stepping away from the counter? Lock BirStock with one click - your PIN is needed to continue.
               </p>
               <button
                 type="button"
-                onClick={() => setIsAutoLocked(!isAutoLocked)}
+                onClick={() => setIsManuallyLocked(!isManuallyLocked)}
                 className="rounded border border-border bg-surface-muted px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-slate-200"
               >
-                {isAutoLocked ? "Unlock Frosted Shield" : "Simulate 3-Min Inactivity Lock"}
+                {isManuallyLocked ? "Unlock" : "Lock BirStock"}
               </button>
             </div>
 
-            {isAutoLocked && (
+            {isManuallyLocked && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="rounded-lg border border-slate-700 bg-slate-900 p-4 text-center text-white space-y-2"
               >
                 <Lock className="mx-auto h-6 w-6 text-amber-400" />
-                <p className="text-xs font-bold">TERMINAL TEMPORARILY LOCKED</p>
+                <p className="text-xs font-bold">BIRSTOCK IS LOCKED</p>
                 <p className="text-[0.65rem] text-slate-300">
-                  Screen blanked due to idle counter. Enter master PIN to resume.
+                  Locked by the user. Enter your PIN to resume.
                 </p>
               </motion.div>
             )}
@@ -200,10 +200,10 @@ export function SecuritySimulator() {
             <div className="rounded-lg border border-border bg-white p-3.5 space-y-2 shadow-xs">
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-emerald-600" />
-                <p className="text-xs font-bold text-foreground">SMTP Email OTP Recovery</p>
+                <p className="text-xs font-bold text-foreground">Forgot PIN - Email OTP</p>
               </div>
               <p className="text-[0.68rem] text-muted-foreground leading-relaxed">
-                Forgot the 4-digit PIN? BirStock securely generates an encrypted 6-digit OTP to the registered owner email address.
+                A one-time code is sent to your registered email through the BirStock licence server so you can set a new PIN.
               </p>
               <button
                 type="button"
@@ -216,7 +216,7 @@ export function SecuritySimulator() {
           </div>
 
           <div className="rounded-lg border border-border bg-white p-3 text-[0.65rem] text-muted-foreground text-center">
-            100% Private: All authentication is computed locally without third-party server dependencies.
+            <span className="inline-flex items-center gap-1"><Wifi className="h-3 w-3" /> PIN unlock works offline. Recovery-email setup and Forgot PIN need internet.</span>
           </div>
         </div>
       </div>
@@ -234,7 +234,7 @@ export function SecuritySimulator() {
               <div className="flex items-center justify-between border-b border-border pb-3">
                 <div className="flex items-center gap-2">
                   <KeyRound className="h-5 w-5 text-primary" />
-                  <h5 className="font-bold text-sm text-foreground">Reset Master PIN</h5>
+                  <h5 className="font-bold text-sm text-foreground">Reset App Lock PIN</h5>
                 </div>
                 <button onClick={() => setShowOtpModal(false)} className="text-muted-foreground hover:text-foreground">
                   &times;
@@ -244,20 +244,20 @@ export function SecuritySimulator() {
               {!otpSent ? (
                 <div className="space-y-3 text-xs">
                   <p className="text-muted-foreground">
-                    We will send a 6-digit verification code to the registered owner email: <strong>owner@retailstore.in</strong>.
+                    An OTP will be sent to your registered email: <strong>owner@example.com</strong>. Internet is required.
                   </p>
                   <button
                     type="button"
                     onClick={handleSendOtp}
                     className="w-full rounded-md bg-primary py-2 text-xs font-bold text-white hover:bg-primary-dark"
                   >
-                    Send 6-Digit Email OTP
+                    Send Email OTP
                   </button>
                 </div>
               ) : (
                 <div className="space-y-3 text-xs">
                   <div className="rounded bg-emerald-50 border border-emerald-200 p-2.5 text-emerald-800 font-mono text-[0.7rem]">
-                    ✓ OTP code <strong>849201</strong> sent to owner email via secure SMTP.
+                    ✓ Demo OTP <strong>849201</strong> sent to your registered email.
                   </div>
                   <input
                     type="text"

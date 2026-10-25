@@ -1,23 +1,23 @@
-import type { Metadata } from "next";
 import { LegalPage } from "@/components/shared/legal-page";
 import { siteConfig } from "@/lib/site-config";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Refund Policy",
   description: `Refund terms for BirStock software licenses purchased from ${siteConfig.company}.`,
-  alternates: { canonical: "/refund-policy" },
-  robots: { index: true, follow: true },
-};
+  path: "/refund-policy",
+  og: "refund-policy",
+});
 
 export default function RefundPolicyPage() {
   return (
-    <LegalPage eyebrow="Legal" title="Refund Policy" updated="31 August 2026">
+    <LegalPage eyebrow="Legal" title="Refund Policy" updated="25 October 2026">
       <div>
         <h2>Trial before you buy</h2>
         <p>
-          Because BirStock is a one-time software purchase, we encourage every business to request
-          a live demo or trial build before purchasing, so you can confirm it fits how your
-          counter operates.
+          We encourage every business to request a live demo or trial before purchasing any BirStock
+          plan - Monthly, Yearly or Lifetime - so you can confirm it fits how your counter operates.
+          This policy applies to all plans and add-ons.
         </p>
       </div>
 

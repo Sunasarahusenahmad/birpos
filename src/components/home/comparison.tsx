@@ -4,13 +4,11 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/motion/reveal";
 
 const rows = [
-  { label: "Works with no internet connection", cloud: false, birstock: true },
-  { label: "Zero recurring subscription fees", cloud: false, birstock: true },
-  { label: "Data stays 100% private on your machine", cloud: false, birstock: true },
-  { label: "Automated backup to your own Google Drive", cloud: false, birstock: true },
-  { label: "Instant, lag-free barcode billing", cloud: false, birstock: true },
-  { label: "Hold cart & multi-counter billing", cloud: false, birstock: true },
-  { label: "Multi-year financial isolation with carry-forward", cloud: false, birstock: true },
+  { label: "Day-to-day billing during internet outages", cloud: false, birstock: true },
+  { label: "One-time lifetime licence option", cloud: false, birstock: true },
+  { label: "Business records stored on your own PC", cloud: false, birstock: true },
+  { label: "Backup to your own Google Drive", cloud: false, birstock: true },
+  { label: "Barcode billing without server round-trips", cloud: false, birstock: true },
 ];
 
 export function Comparison() {
@@ -19,8 +17,8 @@ export function Comparison() {
       <Container>
         <SectionHeading
           eyebrow="BirStock vs. Cloud POS"
-          title="One-time ownership beats another monthly bill"
-          description="Cloud POS tools are built around a subscription. BirStock is built around your counter."
+          title="Own your software and your data"
+          description="Typical cloud POS tools rent you software and keep your data on their servers. BirStock runs on your PC - and you can own it outright."
         />
 
         <Reveal delay={0.1} className="mt-14">

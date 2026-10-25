@@ -1,35 +1,43 @@
-import type { Metadata } from "next";
 import { WifiOff, IndianRupee, ShieldCheck, Users } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/shared/page-hero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 import { FinalCta } from "@/components/home/final-cta";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
+import { JsonLd } from "@/components/seo/json-ld";
+import { SocialLinks } from "@/components/layout/social-links";
 import { siteConfig } from "@/lib/site-config";
+import { graph, pageMetadata, webPageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About Us",
-  description: `Learn about ${siteConfig.company}, the team behind BirStock - offline-first POS and inventory software built for Indian retailers and wholesalers.`,
-  alternates: { canonical: "/about" },
-};
+const title = `About ${siteConfig.company} - The Team Behind BirStock`;
+const description = `${siteConfig.company} builds BirStock, offline-first POS, GST billing and inventory software for Indian retailers and wholesalers. Based in Banaskantha, Gujarat.`;
+
+export const metadata = pageMetadata({
+  title,
+  description,
+  path: "/about",
+  og: "about",
+  absoluteTitle: true,
+});
 
 const values = [
   {
     icon: WifiOff,
     title: "Offline by default",
     description:
-      "We believe billing software should never depend on a Wi-Fi signal. Every core feature in BirStock is built to work fully offline, first.",
+      "We believe billing shouldn't depend on a Wi-Fi signal. BirStock's billing and business database run locally on your PC, so daily work continues offline.",
   },
   {
     icon: IndianRupee,
-    title: "Ownership over rent",
+    title: "Ownership, if you want it",
     description:
-      "A shop owner shouldn't pay a monthly fee forever just to use their own cash register. BirStock is built around one-time ownership.",
+      "A shop owner shouldn't be forced to rent their own cash register forever. Alongside monthly and yearly plans, BirStock offers a one-time lifetime licence.",
   },
   {
     icon: ShieldCheck,
     title: "Your data is yours",
     description:
-      "BirStock stores your business data locally and backs it up to your own Google Drive account - never to a server we control.",
+      "BirStock stores your business records locally and backs them up to your own Google Drive. Our server is only used for things like licence checks and PIN recovery emails.",
   },
   {
     icon: Users,
@@ -42,7 +50,10 @@ const values = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={graph(webPageSchema({ name: title, description, path: "/about", og: "about", type: "AboutPage" }))} />
+      <Breadcrumbs items={[{ name: "About", path: "/about" }]} />
       <PageHero
+        className="pt-8 sm:pt-12"
         eyebrow="About Us"
         title={`${siteConfig.company} builds BirStock`}
         description="We're on a mission to give Indian retailers and wholesalers enterprise-grade billing and inventory software without the internet dependency or the recurring bill."
@@ -56,7 +67,7 @@ export default function AboutPage() {
                 {siteConfig.company} builds desktop software for the shops that keep India&apos;s
                 retail and wholesale economy running - kirana stores, electronics retailers,
                 apparel outlets, hardware shops, and distributors. BirStock is our flagship
-                product: a 100% offline-first POS, inventory, and billing system designed
+                product: an offline-first POS, inventory, and billing system designed
                 specifically for how these businesses actually work.
               </p>
               <p>
@@ -65,7 +76,8 @@ export default function AboutPage() {
                 businesses, neither assumption holds. We built BirStock around a different set
                 of defaults: instant, offline billing; GST compliance baked in from day one;
                 a digital Khata ledger that replaces the paper notebook; and automated backups
-                to your own Google Drive - all owned outright with a single purchase.
+                to your own Google Drive - with a lifetime licence option so you can own it outright.
+                And with the BirStock Mobile App, you can bill from your phone on the shop floor too.
               </p>
               <p>
                 We&apos;re a small, focused team, and we build BirStock for the counter, not the
@@ -126,6 +138,9 @@ export default function AboutPage() {
                 {siteConfig.phoneDisplay}
               </a>
             </p>
+            <div className="mt-6 flex justify-center">
+              <SocialLinks />
+            </div>
           </Reveal>
         </Container>
       </section>

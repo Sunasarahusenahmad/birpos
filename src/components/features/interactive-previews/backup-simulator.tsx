@@ -42,14 +42,14 @@ export function BackupSimulator() {
               BirStock Dual-Backup &amp; Google Drive Disaster Recovery
             </h4>
             <p className="text-[0.68rem] text-muted-foreground">
-              Local encrypted zip archives + personal Google Drive OAuth2 sync
+              Local backups + optional Google Drive backup (illustrative demo)
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-1.5 rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800">
-            <ShieldCheck className="h-3.5 w-3.5" /> 100% Private Cloud
+            <ShieldCheck className="h-3.5 w-3.5" /> Your own Google Drive
           </span>
         </div>
       </div>
@@ -62,21 +62,21 @@ export function BackupSimulator() {
               Dual-Backup Redundancy Pipeline
             </span>
             <span className="text-[0.68rem] text-muted-foreground font-mono">
-              Auto Schedule: Daily @ 22:00
+              Schedule: daily at a time you choose
             </span>
           </div>
 
           {/* Pipeline visual cards */}
           <div className="space-y-3">
-            {/* Step 1: Local SQLite WASM */}
+            {/* Step 1: Local database */}
             <div className="flex items-center gap-3 rounded-lg border border-border bg-white p-3 shadow-xs">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-tint text-primary-darker">
                 <Database className="h-5 w-5" />
               </div>
               <div className="flex-1">
-                <p className="text-xs font-bold text-foreground">1. Local SQLite Embedded WASM DB</p>
+                <p className="text-xs font-bold text-foreground">1. Local business database</p>
                 <p className="text-[0.68rem] text-muted-foreground">
-                  Ultra-fast local storage · No external server or port required
+                  Stored on your PC · No database server to install
                 </p>
               </div>
               <span className="text-emerald-700 text-xs font-bold">Active</span>
@@ -88,9 +88,9 @@ export function BackupSimulator() {
                 <Lock className="h-5 w-5" />
               </div>
               <div className="flex-1">
-                <p className="text-xs font-bold text-foreground">2. AES-Encrypted Local .ZIP Archive</p>
+                <p className="text-xs font-bold text-foreground">2. Local ZIP backup</p>
                 <p className="text-[0.68rem] text-muted-foreground">
-                  Saved to disk · Auto-pruning keeps last {retentionCount} snapshots
+                  Saved to disk · keeps the latest {retentionCount} (default 20, configurable)
                 </p>
               </div>
               <span className="rounded bg-surface-muted px-1.5 py-0.5 text-[0.65rem] font-mono font-bold">
@@ -104,9 +104,9 @@ export function BackupSimulator() {
                 <CloudUpload className="h-5 w-5" />
               </div>
               <div className="flex-1">
-                <p className="text-xs font-bold text-foreground">3. Google Drive OAuth2 Sync</p>
+                <p className="text-xs font-bold text-foreground">3. Google Drive backup (optional)</p>
                 <p className="text-[0.68rem] text-muted-foreground">
-                  Target: /Inventory_App_Backups on your own Gmail
+                  Uploaded to your own Google Drive when online
                 </p>
               </div>
               <span className="text-xs font-bold text-emerald-700">Connected</span>

@@ -1,118 +1,242 @@
-import type { Metadata } from "next";
-import { Check } from "lucide-react";
+import Link from "next/link";
+import { Check, Minus, PackagePlus, Smartphone } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/shared/page-hero";
-import { ButtonLink } from "@/components/ui/button";
-import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
+import { Reveal } from "@/components/motion/reveal";
 import { SavingsCalculator } from "@/components/pricing/savings-calculator";
+import { PricingCards } from "@/components/pricing/pricing-cards";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
-import { plans } from "@/data/pricing";
-import { cn } from "@/lib/utils";
+import { FinalCta } from "@/components/home/final-cta";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
+import { JsonLd } from "@/components/seo/json-ld";
+import { formatINR, getPlan, plans, yearlySaving } from "@/data/pricing";
+import { siteConfig } from "@/lib/site-config";
+import { faqSchema, graph, offersSchema, pageMetadata, webPageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Pricing",
-  description:
-    "BirStock is a one-time purchase, not a monthly subscription. Compare Starter, Growth, and Enterprise plans and request a quote for your store.",
-  alternates: { canonical: "/pricing" },
-};
+const monthly = getPlan("monthly");
+const yearly = getPlan("yearly");
+const lifetime = getPlan("lifetime");
+
+const title = `BirStock Pricing - ${formatINR(monthly.price)}/month, ${formatINR(yearly.price)}/year or ${formatINR(
+  lifetime.price
+)} Lifetime`;
+const description = `Simple BirStock pricing for Indian shops: ${formatINR(monthly.price)} per month, ${formatINR(
+  yearly.price
+)} per year with the BirStock Mobile App included, or a ${formatINR(
+  lifetime.price
+)} one-time lifetime licence. Offline POS, GST billing and inventory in every plan.`;
+
+export const metadata = pageMetadata({
+  title,
+  description,
+  path: "/pricing",
+  og: "pricing",
+  absoluteTitle: true,
+  keywords: [
+    "billing software price india",
+    "pos software price",
+    "lifetime billing software",
+    "billing software one time payment",
+    "gst billing software price",
+    "billing software with mobile app price",
+  ],
+});
+
+type Cell = boolean | string;
+const comparison: { label: string; values: Record<"monthly" | "yearly" | "lifetime", Cell> }[] = [
+  { label: "Quick POS & Touch POS billing", values: { monthly: true, yearly: true, lifetime: true } },
+  { label: "Inventory, Excel import/export & low-stock alerts", values: { monthly: true, yearly: true, lifetime: true } },
+  { label: "Customer Khata, suppliers & returns", values: { monthly: true, yearly: true, lifetime: true } },
+  { label: "GST invoices (thermal & A4)", values: { monthly: true, yearly: true, lifetime: true } },
+  { label: "Reports, expenses & other income", values: { monthly: true, yearly: true, lifetime: true } },
+  { label: "Local + Google Drive backup", values: { monthly: true, yearly: true, lifetime: true } },
+  { label: "PIN App Lock & financial year", values: { monthly: true, yearly: true, lifetime: true } },
+  { label: "Multiple companies/firms", values: { monthly: true, yearly: true, lifetime: true } },
+  { label: "BirStock Mobile App", values: { monthly: false, yearly: "Included", lifetime: "Add-on" } },
+  { label: "New feature modules", values: { monthly: "While active", yearly: "Included during plan", lifetime: "Add-on, per feature" } },
+  { label: "Software updates", values: { monthly: "While active", yearly: "Full year", lifetime: "Bug fixes for included features" } },
+  { label: "Licence", values: { monthly: "Renews monthly", yearly: "Renews yearly", lifetime: "Permanent" } },
+  { label: "Support", values: { monthly: "Email & phone", yearly: "Priority", lifetime: "Email & phone" } },
+];
 
 const pricingFaqs = [
   {
-    q: "Is BirStock really a one-time purchase?",
-    a: "Yes. You purchase a BirStock license once per business - there's no forced monthly or annual subscription to keep billing.",
+    q: "What is the difference between the three plans?",
+    a: `All three include the full BirStock desktop app. Monthly (${formatINR(monthly.price)}/month) is the lowest upfront cost. Yearly (${formatINR(
+      yearly.price
+    )}/year) adds the BirStock Mobile App and new features released during your plan. Lifetime (${formatINR(
+      lifetime.price
+    )} one-time) is a permanent licence with no renewals; new feature modules and the mobile app are optional add-ons.`,
   },
   {
-    q: "How do I get exact pricing for my store?",
-    a: "Pricing depends on the number of counters, stores, and add-on modules you need. Tell us about your business on the contact form and we'll send a tailored quote.",
+    q: "Is the Lifetime licence really permanent?",
+    a: "Yes. Pay once and keep using the features included at purchase without any renewal. You also get bug-fix updates for those features. New modules we release later are sold separately, feature by feature, so you only pay for what you need.",
   },
   {
-    q: "Do you offer a free trial?",
-    a: "Yes - request a demo and our team will set you up with a trial build so you can bill real transactions before you commit.",
+    q: "Does the Yearly plan include the mobile app?",
+    a: `Yes. The Yearly plan includes the BirStock Mobile App, which that pairs with your desktop over shop Wi-Fi. That's about ${formatINR(
+      Math.round(yearly.price / 12)
+    )}/month and saves ${yearlySaving().percent}% compared with paying monthly for a year.`,
   },
   {
-    q: "Is support included?",
-    a: "All plans include support. Growth and Enterprise plans include priority support with faster response times and dedicated onboarding help.",
+    q: "Do prices include GST?",
+    a: "Yes. All BirStock prices shown on this website are inclusive of GST.",
+  },
+  {
+    q: "Can I switch plans later?",
+    a: "Yes. Contact us to move from Monthly to Yearly, or to upgrade to a Lifetime licence. Your data stays on your PC, so nothing needs to be re-entered.",
+  },
+  {
+    q: "Is pricing per PC?",
+    a: "Plan prices cover one Windows PC. For more counters or branches, contact us for additional licences - each PC runs its own BirStock database.",
+  },
+  {
+    q: "Can I try BirStock before paying?",
+    a: "Yes. Request a demo and our team will walk you through BirStock and help you set up a trial with your own products.",
   },
 ];
 
 export default function PricingPage() {
+  const jsonLd = graph(
+    webPageSchema({ name: title, description, path: "/pricing", og: "pricing" }),
+    {
+      "@type": "Product",
+      "@id": `${siteConfig.url}/pricing/#product`,
+      name: `${siteConfig.name} POS, GST Billing & Inventory Software`,
+      description: siteConfig.description,
+      image: `${siteConfig.url}/brand/og/pricing.png`,
+      brand: { "@type": "Brand", name: siteConfig.name },
+      category: "Business Software",
+      offers: offersSchema(),
+    },
+    faqSchema(pricingFaqs)
+  );
+
   return (
     <>
+      <JsonLd data={jsonLd} />
+      <Breadcrumbs items={[{ name: "Pricing", path: "/pricing" }]} />
       <PageHero
+        className="pt-8 sm:pt-12"
         eyebrow="Pricing"
-        title="Own it once. Bill forever."
-        description="No monthly invoice, no per-user fees, no surprise price hikes. Pick the plan that matches how your store operates."
+        title="Simple pricing. Pay monthly, yearly, or once."
+        description={`Every plan includes offline POS, GST billing, inventory, Khata and backup. Choose Yearly to get the BirStock Mobile App too - or own BirStock forever for ${formatINR(
+          lifetime.price
+        )}.`}
       />
 
-      <section className="pb-20 sm:pb-24">
+      <section className="pb-16 sm:pb-20">
         <Container>
-          <StaggerGroup className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {plans.map((plan) => (
-              <StaggerItem key={plan.id}>
-                <div
-                  className={cn(
-                    "flex h-full flex-col rounded-[var(--radius-xl)] border p-7 sm:p-8",
-                    plan.highlighted
-                      ? "border-primary bg-white shadow-[var(--shadow-lifted)] lg:-translate-y-3"
-                      : "border-border bg-white shadow-[var(--shadow-soft)]"
-                  )}
-                >
-                  {plan.highlighted ? (
-                    <span className="mb-4 inline-flex w-fit items-center rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white">
-                      Most Popular
-                    </span>
-                  ) : null}
-                  <h2 className="font-display text-xl font-bold text-foreground">{plan.name}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {plan.description}
-                  </p>
-                  <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-primary-darker">
-                    {plan.bestFor}
-                  </p>
-
-                  <p className="mt-6 font-display text-2xl font-extrabold text-foreground">
-                    Custom Quote
-                    <span className="ml-1.5 text-sm font-medium text-muted-foreground">
-                      / one-time
-                    </span>
-                  </p>
-
-                  <ul className="mt-6 flex-1 space-y-3">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2.5 text-sm text-foreground">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <ButtonLink
-                    href={`/contact?type=pricing&plan=${plan.id}`}
-                    variant={plan.highlighted ? "primary" : "outline"}
-                    className="mt-8 justify-center"
-                  >
-                    Get a Quote
-                  </ButtonLink>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-
+          <PricingCards />
           <Reveal delay={0.1}>
             <p className="mt-8 text-center text-sm text-muted-foreground">
-              Not sure which plan fits?{" "}
-              <a href="/contact?type=demo" className="font-medium text-primary-darker hover:underline">
-                Schedule a demo
-              </a>{" "}
-              and we&apos;ll help you choose.
+              Prices in Indian Rupees (INR), inclusive of GST, per Windows PC. Need several counters or branches?{" "}
+              <Link href="/contact?type=pricing" className="font-medium text-primary-darker hover:underline">
+                Ask for a multi-PC quote
+              </Link>
+              .
             </p>
           </Reveal>
         </Container>
       </section>
 
+      <section className="pb-20 sm:pb-24">
+        <Container className="max-w-5xl">
+          <Reveal>
+            <h2 className="text-center font-display text-2xl font-bold text-foreground sm:text-3xl">
+              Compare plans
+            </h2>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <div className="mt-8 overflow-x-auto rounded-[var(--radius-lg)] border border-border bg-white shadow-[var(--shadow-soft)]">
+              <table className="w-full min-w-[640px] text-left text-sm">
+                <caption className="sr-only">BirStock plan comparison</caption>
+                <thead>
+                  <tr className="border-b border-border bg-surface-muted">
+                    <th scope="col" className="px-5 py-4 font-semibold text-muted-foreground">
+                      What you get
+                    </th>
+                    {plans.map((p) => (
+                      <th
+                        key={p.id}
+                        scope="col"
+                        className={`px-5 py-4 text-center font-semibold ${p.highlighted ? "text-primary-darker" : "text-foreground"}`}
+                      >
+                        {p.name}
+                        <span className="block text-xs font-medium text-muted-foreground">
+                          {formatINR(p.price)} {p.period}
+                        </span>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {comparison.map((row) => (
+                    <tr key={row.label}>
+                      <th scope="row" className="px-5 py-3.5 font-medium text-foreground">
+                        {row.label}
+                      </th>
+                      {plans.map((p) => {
+                        const v = row.values[p.id];
+                        return (
+                          <td key={p.id} className="px-5 py-3.5 text-center">
+                            {v === true ? (
+                              <Check className="mx-auto h-4 w-4 text-primary" strokeWidth={3} aria-label="Included" />
+                            ) : v === false ? (
+                              <Minus className="mx-auto h-4 w-4 text-muted-foreground" aria-label="Not included" />
+                            ) : (
+                              <span className="text-xs font-medium text-foreground">{v}</span>
+                            )}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
       <section className="bg-surface-muted py-20 sm:py-24">
-        <Container className="max-w-2xl">
-          <SavingsCalculator />
+        <Container className="max-w-5xl">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <Reveal>
+              <div className="h-full rounded-[var(--radius-lg)] border border-border bg-white p-7">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-sm)] bg-primary-tint text-primary-darker">
+                  <Smartphone className="h-5 w-5" />
+                </span>
+                <h2 className="mt-4 font-display text-lg font-semibold text-foreground">BirStock Mobile App</h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Pair your phone with the desktop over shop Wi-Fi to make sales and check customers, invoices and
+                  stock. Included in Yearly; available as an add-on for Lifetime licences.
+                </p>
+                <Link href="/features/mobile-app" className="mt-4 inline-block text-sm font-semibold text-primary-darker hover:underline">
+                  Learn about the BirStock Mobile App &rarr;
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <div className="h-full rounded-[var(--radius-lg)] border border-border bg-white p-7">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-sm)] bg-primary-tint text-primary-darker">
+                  <PackagePlus className="h-5 w-5" />
+                </span>
+                <h2 className="mt-4 font-display text-lg font-semibold text-foreground">Add-ons for Lifetime licences</h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Your Lifetime licence keeps every feature you bought, forever. When we release a new feature module,
+                  you can add just that feature at its own price - no subscription needed.
+                </p>
+                <Link href="/contact?type=pricing&plan=lifetime" className="mt-4 inline-block text-sm font-semibold text-primary-darker hover:underline">
+                  Ask about add-on pricing &rarr;
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="mx-auto mt-12 max-w-2xl">
+            <SavingsCalculator />
+          </div>
         </Container>
       </section>
 
@@ -128,6 +252,8 @@ export default function PricingPage() {
           </div>
         </Container>
       </section>
+
+      <FinalCta />
     </>
   );
 }

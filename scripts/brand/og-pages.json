@@ -1,0 +1,270 @@
+[
+  {
+    "key": "home",
+    "eyebrow": "Offline POS · GST Billing · Inventory",
+    "title": "Billing software that keeps your counter running",
+    "subtitle": "Offline desktop POS, GST invoices, Khata, inventory and Google Drive backup - plus the BirStock Mobile App.",
+    "icon": "scan-barcode",
+    "chips": [
+      "₹799/month",
+      "₹2,999/year",
+      "₹12,999 lifetime"
+    ]
+  },
+  {
+    "key": "pricing",
+    "eyebrow": "Pricing",
+    "title": "Pay monthly, yearly, or once",
+    "subtitle": "Every plan includes the full desktop app. Yearly adds the Android & iOS mobile app. Prices include GST.",
+    "icon": "badge-indian-rupee",
+    "chips": [
+      "Monthly ₹799",
+      "Yearly ₹2,999",
+      "Lifetime ₹12,999"
+    ]
+  },
+  {
+    "key": "features",
+    "eyebrow": "Features",
+    "title": "One app. Every module your counter needs.",
+    "subtitle": "POS, GST invoices, inventory, Khata, suppliers, returns, expenses, reports, backup and mobile.",
+    "icon": "layout-grid"
+  },
+  {
+    "key": "industries",
+    "eyebrow": "Industries",
+    "title": "Billing software that fits your kind of shop",
+    "subtitle": "Supermarkets, kirana, electronics & mobile, hardware, apparel and wholesale.",
+    "icon": "store"
+  },
+  {
+    "key": "download",
+    "eyebrow": "Download for Windows",
+    "title": "Get BirStock for your Windows PC",
+    "subtitle": "Install, activate and bill your first customer the same day. Windows 10 & 11.",
+    "icon": "download"
+  },
+  {
+    "key": "faq",
+    "eyebrow": "FAQ",
+    "title": "Your BirStock questions, answered",
+    "subtitle": "Internet use, backup, App Lock, Hold Cart, GST, updates, mobile app and pricing.",
+    "icon": "circle-help"
+  },
+  {
+    "key": "about",
+    "eyebrow": "About Birtik Tech",
+    "title": "Built for the counter, not the boardroom",
+    "subtitle": "Offline-first business software for Indian retailers and wholesalers. Made in Gujarat.",
+    "icon": "building-2"
+  },
+  {
+    "key": "contact",
+    "eyebrow": "Contact",
+    "title": "Let's get your counter set up",
+    "subtitle": "Download, demo, pricing or support - call +91 81560 00337 or email support@birstock.com.",
+    "icon": "mail"
+  },
+  {
+    "key": "privacy",
+    "eyebrow": "Legal",
+    "title": "Privacy Policy",
+    "subtitle": "What stays on your PC, what goes to your Google Drive, and what our server handles.",
+    "icon": "lock"
+  },
+  {
+    "key": "terms",
+    "eyebrow": "Legal",
+    "title": "Terms of Service",
+    "subtitle": "The terms for using the BirStock website, desktop app and mobile app.",
+    "icon": "file-text"
+  },
+  {
+    "key": "refund-policy",
+    "eyebrow": "Legal",
+    "title": "Refund Policy",
+    "subtitle": "How refunds work for BirStock Monthly, Yearly and Lifetime plans.",
+    "icon": "receipt-text"
+  },
+  {
+    "key": "offline-billing-software",
+    "eyebrow": "Offline Billing Software",
+    "title": "Offline billing software for your Windows PC",
+    "subtitle": "Keep billing through internet outages - your records stay on your own computer.",
+    "icon": "wifi-off"
+  },
+  {
+    "key": "gst-billing-software",
+    "eyebrow": "GST Billing Software",
+    "title": "GST billing for retail & wholesale shops",
+    "subtitle": "CGST/SGST & IGST, five built-in GST rates, GSTIN on invoices, thermal or A4.",
+    "icon": "percent"
+  },
+  {
+    "key": "billing-software-for-retail-shop",
+    "eyebrow": "Retail Shop Billing",
+    "title": "Fast billing software for retail shops",
+    "subtitle": "Barcode billing, held bills, stock checks, Khata and Excel product import.",
+    "icon": "shopping-cart"
+  },
+  {
+    "key": "inventory-management-software",
+    "eyebrow": "Inventory Software",
+    "title": "Inventory management with billing built in",
+    "subtitle": "Excel import, purchase-based stock-in, low-stock alerts, returns and IMEI tracking.",
+    "icon": "boxes"
+  },
+  {
+    "key": "lifetime-billing-software",
+    "eyebrow": "One-Time Licence",
+    "title": "Lifetime billing software. Pay once, keep billing.",
+    "subtitle": "A permanent BirStock licence for a one-time ₹12,999 - no renewal to keep billing.",
+    "icon": "infinity",
+    "chips": [
+      "₹12,999 one-time"
+    ]
+  },
+  {
+    "key": "billing-software-with-mobile-app",
+    "eyebrow": "Desktop + Mobile",
+    "title": "Billing software with a mobile app",
+    "subtitle": "Android & iOS app that pairs with your shop PC over Wi-Fi to bill and check stock.",
+    "icon": "smartphone"
+  },
+  {
+    "key": "feature-pos-billing",
+    "eyebrow": "Feature · POS Billing",
+    "title": "Keyboard & touch POS billing",
+    "subtitle": "Barcode scanning, Hold Cart, stock checks, discounts and change calculation.",
+    "icon": "scan-barcode"
+  },
+  {
+    "key": "feature-inventory-management",
+    "eyebrow": "Feature · Inventory",
+    "title": "Inventory & purchase management",
+    "subtitle": "Excel import/export, purchase stock-in, low-stock alerts and serial/IMEI tracking.",
+    "icon": "boxes"
+  },
+  {
+    "key": "feature-customer-khata",
+    "eyebrow": "Feature · Customer Khata",
+    "title": "Digital Udhar Khata for your customers",
+    "subtitle": "Credit bills, payments, returns, running dues and PDF statements.",
+    "icon": "book-user"
+  },
+  {
+    "key": "feature-supplier-management",
+    "eyebrow": "Feature · Suppliers",
+    "title": "Supplier ledgers & purchase management",
+    "subtitle": "Purchase history, dues, payments with references, and debit notes.",
+    "icon": "truck"
+  },
+  {
+    "key": "feature-gst-billing",
+    "eyebrow": "Feature · GST Billing",
+    "title": "GST invoices on the printer you already have",
+    "subtitle": "Five built-in GST rates, CGST/SGST & IGST, GSTIN, thermal or A4 layouts.",
+    "icon": "receipt-text"
+  },
+  {
+    "key": "feature-backup-sync",
+    "eyebrow": "Feature · Backup",
+    "title": "Local & Google Drive backup",
+    "subtitle": "Scheduled backups at the time you choose, 20 local copies by default.",
+    "icon": "cloud-upload"
+  },
+  {
+    "key": "feature-reports-analytics",
+    "eyebrow": "Feature · Reports",
+    "title": "Sales, profit & GST reports",
+    "subtitle": "Totals include expenses and other income. Print or export to PDF.",
+    "icon": "chart-column"
+  },
+  {
+    "key": "feature-expenses-income",
+    "eyebrow": "Feature · Expenses & Income",
+    "title": "See real profit, not just sales",
+    "subtitle": "Record shop expenses and other income - included in your report totals.",
+    "icon": "wallet"
+  },
+  {
+    "key": "feature-sales-purchase-returns",
+    "eyebrow": "Feature · Returns",
+    "title": "Sales returns & purchase returns",
+    "subtitle": "Stock, Khata and supplier dues adjust automatically - with debit notes.",
+    "icon": "undo-2"
+  },
+  {
+    "key": "feature-mobile-app",
+    "eyebrow": "Feature · BirStock Mobile App",
+    "title": "Your shop counter, in your pocket",
+    "subtitle": "Android & iOS. Pair over shop Wi-Fi with a QR code to bill and check stock from your phone.",
+    "icon": "smartphone",
+    "chips": [
+      "Included in Yearly"
+    ]
+  },
+  {
+    "key": "feature-security",
+    "eyebrow": "Feature · App Lock",
+    "title": "PIN App Lock with email OTP reset",
+    "subtitle": "PIN at startup, lock on demand, and reset a forgotten PIN by email OTP.",
+    "icon": "shield-check"
+  },
+  {
+    "key": "feature-multi-company",
+    "eyebrow": "Feature · Multi-Company",
+    "title": "Run more than one business from one BirStock",
+    "subtitle": "Separate products, customers, bills and reports for each company - switch in a few clicks.",
+    "icon": "building-2"
+  },
+  {
+    "key": "feature-financial-year",
+    "eyebrow": "Feature · Financial Year",
+    "title": "Close the books without retyping balances",
+    "subtitle": "Carry forward closing stock and customer/supplier balances into the new year.",
+    "icon": "calendar-clock"
+  },
+  {
+    "key": "industry-supermarkets",
+    "eyebrow": "Industry · Supermarkets",
+    "title": "Supermarket billing built for rush hours",
+    "subtitle": "Fast barcode billing, Hold Cart and GST receipts - even when the internet drops.",
+    "icon": "shopping-cart"
+  },
+  {
+    "key": "industry-kirana-grocery",
+    "eyebrow": "Industry · Kirana & Grocery",
+    "title": "Kirana billing with digital Udhar Khata",
+    "subtitle": "Quick billing, customer credit ledgers, PDF statements and loose-item units.",
+    "icon": "store"
+  },
+  {
+    "key": "industry-electronics-mobile",
+    "eyebrow": "Industry · Electronics & Mobile",
+    "title": "IMEI & serial tracking for mobile shops",
+    "subtitle": "Serial/IMEI records, distributor ledgers, debit notes and GST tax invoices.",
+    "icon": "smartphone"
+  },
+  {
+    "key": "industry-hardware-sanitary",
+    "eyebrow": "Industry · Hardware & Sanitary",
+    "title": "Billing for hardware, paint & sanitary stores",
+    "subtitle": "Mixed units, Excel catalogue import, contractor credit and multi-rate GST.",
+    "icon": "wrench"
+  },
+  {
+    "key": "industry-apparel-footwear",
+    "eyebrow": "Industry · Apparel & Footwear",
+    "title": "Fast POS for fashion & footwear counters",
+    "subtitle": "Barcode checkout, held bills while customers try sizes, and easy returns.",
+    "icon": "shirt"
+  },
+  {
+    "key": "industry-wholesale",
+    "eyebrow": "Industry · Wholesale",
+    "title": "Invoicing & inventory for distributors",
+    "subtitle": "B2B GST invoices, credit ledgers, debit notes and year-end carry-forward.",
+    "icon": "warehouse"
+  }
+]

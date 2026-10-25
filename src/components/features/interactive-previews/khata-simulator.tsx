@@ -11,7 +11,6 @@ import {
   RotateCcw,
   Plus,
   CheckCircle,
-  MessageCircle,
   X,
   FileText,
 } from "lucide-react";
@@ -42,7 +41,7 @@ export function KhataSimulator() {
   const [transactions, setTransactions] = useState<Transaction[]>(INITIAL_TRANSACTIONS);
   const [paymentInput, setPaymentInput] = useState(1500);
   const [paymentNote, setPaymentNote] = useState("UPI Transfer (GPay)");
-  const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
+  const [showStatementModal, setShowStatementModal] = useState(false);
 
   // Balance math
   const totalDebits = transactions
@@ -93,17 +92,17 @@ export function KhataSimulator() {
               BirStock Customer Khata &amp; Digital Udhar Ledger
             </h4>
             <p className="text-[0.68rem] text-muted-foreground">
-              Offline customer credit tracking with instant 1-click WhatsApp statements
+              Offline customer credit tracking with PDF statements (illustrative demo)
             </p>
           </div>
         </div>
 
         <button
           type="button"
-          onClick={() => setShowWhatsAppModal(true)}
-          className="inline-flex items-center gap-1.5 rounded-md bg-emerald-600 px-3 py-1.5 text-xs font-bold text-white shadow-xs hover:bg-emerald-700"
+          onClick={() => setShowStatementModal(true)}
+          className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-bold text-white shadow-xs hover:bg-primary-dark"
         >
-          <MessageCircle className="h-3.5 w-3.5" /> 1-Click WhatsApp Statement
+          <FileText className="h-3.5 w-3.5" /> Export PDF Statement
         </button>
       </div>
 
@@ -265,14 +264,14 @@ export function KhataSimulator() {
           </div>
 
           <div className="mt-6 text-center text-[0.65rem] text-muted-foreground">
-            BirStock automatically handles overpayments by crediting an <strong>Advance Balance</strong> without manual reconciliations.
+            Illustrative demo - sample customer and amounts. Every credit sale, payment and return updates the running balance.
           </div>
         </div>
       </div>
 
-      {/* WhatsApp Modal Simulator */}
+      {/* PDF Statement Preview */}
       <AnimatePresence>
-        {showWhatsAppModal && (
+        {showStatementModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -280,26 +279,26 @@ export function KhataSimulator() {
               exit={{ opacity: 0, scale: 0.95 }}
               className="w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-2xl"
             >
-              <div className="flex items-center justify-between bg-emerald-700 px-4 py-3 text-white">
+              <div className="flex items-center justify-between bg-foreground px-4 py-3 text-white">
                 <div className="flex items-center gap-2">
                   <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center font-bold">
                     RP
                   </div>
                   <div>
                     <p className="text-xs font-bold">{customer.name}</p>
-                    <p className="text-[0.65rem] text-white/80">WhatsApp Preview</p>
+                    <p className="text-[0.65rem] text-white/80">Customer statement (PDF)</p>
                   </div>
                 </div>
-                <button onClick={() => setShowWhatsAppModal(false)} className="text-white hover:text-white/80">
+                <button onClick={() => setShowStatementModal(false)} className="text-white hover:text-white/80">
                   <X className="h-4 w-4" />
                 </button>
               </div>
 
-              <div className="bg-[#efeae2] p-4 text-xs space-y-3">
+              <div className="bg-surface-muted p-4 text-xs space-y-3">
                 <div className="rounded-lg bg-white p-3 shadow-xs space-y-1.5">
-                  <p className="font-bold text-foreground">Pranam Ramesh Bhai 🙏</p>
+                  <p className="font-bold text-foreground">Statement of Account</p>
                   <p className="text-[0.72rem] text-muted-foreground leading-relaxed">
-                    This is your account statement from <strong>BIRSTOCK STORE</strong>.
+                    Customer: <strong>{customer.name}</strong> · Sample Store
                   </p>
                   <div className="rounded bg-surface-muted p-2 text-[0.7rem] font-mono">
                     <div>Current Balance: <strong>&#8377;{Math.abs(currentBalance).toLocaleString("en-IN")} {isAdvance ? "Advance" : "Due"}</strong></div>
@@ -309,17 +308,17 @@ export function KhataSimulator() {
                     <FileText className="h-4 w-4 text-red-500" />
                     <span>Statement_{customer.name.replace(/\s+/g, "_")}.pdf</span>
                   </div>
-                  <p className="text-[0.62rem] text-muted-foreground text-right">10:46 AM · Sent via BirStock</p>
+                  <p className="text-[0.62rem] text-muted-foreground text-right">Ready to print or share</p>
                 </div>
               </div>
 
               <div className="bg-surface-muted px-4 py-3 text-center">
                 <button
                   type="button"
-                  onClick={() => setShowWhatsAppModal(false)}
-                  className="rounded-md bg-emerald-600 px-4 py-1.5 text-xs font-bold text-white hover:bg-emerald-700"
+                  onClick={() => setShowStatementModal(false)}
+                  className="rounded-md bg-primary px-4 py-1.5 text-xs font-bold text-white hover:bg-primary-dark"
                 >
-                  Close WhatsApp Preview
+                  Close Preview
                 </button>
               </div>
             </motion.div>

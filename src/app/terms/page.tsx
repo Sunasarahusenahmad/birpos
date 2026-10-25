@@ -1,17 +1,17 @@
-import type { Metadata } from "next";
 import { LegalPage } from "@/components/shared/legal-page";
 import { siteConfig } from "@/lib/site-config";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Terms of Service",
   description: `The terms that govern use of the BirStock website and application, provided by ${siteConfig.company}.`,
-  alternates: { canonical: "/terms" },
-  robots: { index: true, follow: true },
-};
+  path: "/terms",
+  og: "terms",
+});
 
 export default function TermsPage() {
   return (
-    <LegalPage eyebrow="Legal" title="Terms of Service" updated="31 August 2026">
+    <LegalPage eyebrow="Legal" title="Terms of Service" updated="25 October 2026">
       <div>
         <h2>Agreement to terms</h2>
         <p>
@@ -25,8 +25,11 @@ export default function TermsPage() {
       <div>
         <h2>License to use BirStock</h2>
         <p>
-          A BirStock purchase grants you a non-exclusive, non-transferable license to install and
-          use the BirStock application on the number of devices or counters covered by your plan.
+          A BirStock plan grants you a non-exclusive, non-transferable licence to install and use the
+          BirStock application on the number of PCs covered by your plan. Monthly and Yearly plans are
+          valid for the period paid for. A Lifetime licence is a one-time purchase that does not expire
+          for the features included at the time of purchase. New feature modules and the BirStock Mobile
+          App may be offered to Lifetime licence holders as separately priced add-ons.
           BirStock is licensed, not sold - ownership of the underlying software remains with{" "}
           {siteConfig.company}, while you retain full ownership of the business data you create
           within it.
@@ -45,19 +48,25 @@ export default function TermsPage() {
       <div>
         <h2>Availability &amp; support</h2>
         <p>
-          BirStock runs locally on your device, so its core billing, inventory, and ledger
-          features do not depend on our servers being online. Optional cloud features, such as
-          Google Drive backup, depend on the availability of Google&apos;s services and your own
-          internet connection.
+          BirStock runs locally on your device, so day-to-day billing, inventory and ledger
+          features do not depend on our servers being online, subject to licence status. Licence
+          activation and checks, software updates, and App Lock email OTP recovery require internet
+          access and our servers. Google Drive backup depends on Google&apos;s services and your
+          internet connection. The BirStock Mobile App requires your phone and PC to be on the same
+          local network.
         </p>
       </div>
 
       <div>
         <h2>Payments &amp; pricing</h2>
         <p>
-          Plan pricing is provided on request based on your business needs and confirmed in
-          writing before purchase. Unless otherwise agreed, a BirStock license fee is a one-time
-          charge and does not renew automatically.
+          Current plan prices are published on our{" "}
+          <a href="/pricing/" className="text-primary-darker hover:underline">
+            pricing page
+          </a>
+          . Monthly and Yearly plans are paid for each period; to keep using BirStock after a period
+          ends, renew your plan. The Lifetime licence is a one-time payment. Published prices include GST. Prices may change for
+          future purchases and renewals; changes do not affect a period you have already paid for.
         </p>
       </div>
 

@@ -163,7 +163,7 @@ export function PosBillingSimulator() {
 
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-tint px-2.5 py-0.5 text-xs font-semibold text-primary-darker">
-            <WifiOff className="h-3 w-3" /> 100% Offline (SQLite WASM)
+            <WifiOff className="h-3 w-3" /> Works offline
           </span>
           <button
             onClick={handleReset}
@@ -394,7 +394,7 @@ export function PosBillingSimulator() {
               <div className="flex items-center gap-2">
                 <PauseCircle className="h-4 w-4 text-amber-600" />
                 <div className="text-xs">
-                  <span className="font-bold text-foreground">Hold Cart (Multi-Counter)</span>
+                  <span className="font-bold text-foreground">Hold Cart (multiple bills, one counter)</span>
                   <p className="text-[0.65rem] text-muted-foreground">
                     Pause active bill when customer pauses checkout
                   </p>

@@ -1,25 +1,29 @@
-import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/shared/page-hero";
 import { Reveal } from "@/components/motion/reveal";
 import { ContactForm } from "@/components/contact/contact-form";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
+import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/site-config";
+import { graph, pageMetadata, webPageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact Us",
-  description:
-    "Get in touch with the BirStock team - request a download, schedule a live demo, ask about pricing, or get support. Based in Banaskantha, Gujarat.",
-  alternates: { canonical: "/contact" },
-};
+const title = "Contact BirStock - Download, Demo, Pricing & Support";
+const description =
+  "Contact the BirStock team to request a download, book a live demo, buy a plan, or get support. Call +91 81560 00337 or email support@birstock.com. Banaskantha, Gujarat.";
+
+export const metadata = pageMetadata({ title, description, path: "/contact", og: "contact", absoluteTitle: true });
 
 export default function ContactPage() {
   const mapQuery = encodeURIComponent(siteConfig.address.full);
 
   return (
     <>
+      <JsonLd data={graph(webPageSchema({ name: title, description, path: "/contact", og: "contact", type: "ContactPage" }))} />
+      <Breadcrumbs items={[{ name: "Contact", path: "/contact" }]} />
       <PageHero
+        className="pt-8 sm:pt-12"
         eyebrow="Contact"
         title="Let's get your counter set up"
         description="Request a download, book a live demo, or ask us anything - we typically reply within one business day."
@@ -54,7 +58,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-start gap-3 text-muted-foreground">
                     <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                    <span>Mon–Sat, 10:00 AM – 7:00 PM IST</span>
+                    <span>{siteConfig.hours}</span>
                   </div>
                 </div>
               </div>

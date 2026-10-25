@@ -83,7 +83,7 @@ export function PosMockup() {
             </span>
           </div>
           <span className="flex items-center gap-1.5 rounded-full bg-primary-tint px-2.5 py-1 text-[0.65rem] font-bold text-primary-darker">
-            <WifiOff className="h-3 w-3" /> 100% Offline Active
+            <WifiOff className="h-3 w-3" /> Offline billing active
           </span>
         </div>
 
@@ -205,9 +205,12 @@ export function PosMockup() {
         </span>
         <div className="text-[0.68rem]">
           <p className="font-bold text-foreground">Drive Cloud Backup</p>
-          <p className="text-muted-foreground">Auto-synced to your Gmail</p>
+          <p className="text-muted-foreground">Backed up to your Google Drive</p>
         </div>
       </motion.div>
+      <p className="absolute -bottom-7 left-0 right-0 text-center text-[0.65rem] text-muted-foreground">
+        Illustrative preview with sample data
+      </p>
     </motion.div>
   );
 }

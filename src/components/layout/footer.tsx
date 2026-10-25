@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/ui/logo";
 import { footerNav, siteConfig } from "@/lib/site-config";
 import { NewsletterForm } from "@/components/layout/newsletter-form";
+import { SocialLinks } from "@/components/layout/social-links";
 
 export function Footer() {
   return (
@@ -18,7 +19,8 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              {siteConfig.description}
+              Offline-first POS, GST billing &amp; inventory software for Indian retailers and
+              wholesalers - with a mobile app and a lifetime licence option.
             </p>
             <div className="mt-6 space-y-2.5 text-sm text-muted-foreground">
               <a
@@ -40,6 +42,7 @@ export function Footer() {
                 <span>{siteConfig.address.full}</span>
               </div>
             </div>
+            <SocialLinks className="mt-6" />
           </div>
 
           <FooterCol title="Product" links={footerNav.product} />

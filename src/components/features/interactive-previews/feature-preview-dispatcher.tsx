@@ -9,28 +9,25 @@ import { BackupSimulator } from "./backup-simulator";
 import { ReportsSimulator } from "./reports-simulator";
 import { SecuritySimulator } from "./security-simulator";
 import { FinancialYearSimulator } from "./financial-year-simulator";
+import { MobileAppSimulator } from "./mobile-app-simulator";
+import { ExpensesSimulator } from "./expenses-simulator";
+
+const simulators: Record<string, () => React.ReactElement> = {
+  "pos-billing": PosBillingSimulator,
+  "inventory-management": InventorySimulator,
+  "customer-khata": KhataSimulator,
+  "supplier-management": SupplierSimulator,
+  "sales-purchase-returns": SupplierSimulator,
+  "gst-billing": GstSimulator,
+  "backup-sync": BackupSimulator,
+  "reports-analytics": ReportsSimulator,
+  "expenses-income": ExpensesSimulator,
+  "security": SecuritySimulator,
+  "financial-year": FinancialYearSimulator,
+  "mobile-app": MobileAppSimulator,
+};
 
 export function FeaturePreviewDispatcher({ slug }: { slug: string }) {
-  switch (slug) {
-    case "pos-billing":
-      return <PosBillingSimulator />;
-    case "inventory-management":
-      return <InventorySimulator />;
-    case "customer-khata":
-      return <KhataSimulator />;
-    case "supplier-management":
-      return <SupplierSimulator />;
-    case "gst-billing":
-      return <GstSimulator />;
-    case "backup-sync":
-      return <BackupSimulator />;
-    case "reports-analytics":
-      return <ReportsSimulator />;
-    case "security":
-      return <SecuritySimulator />;
-    case "financial-year":
-      return <FinancialYearSimulator />;
-    default:
-      return <PosBillingSimulator />;
-  }
+  const Simulator = simulators[slug] ?? PosBillingSimulator;
+  return <Simulator />;
 }

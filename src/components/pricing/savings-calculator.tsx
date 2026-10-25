@@ -2,38 +2,51 @@
 
 import { useMemo, useState } from "react";
 import { Reveal } from "@/components/motion/reveal";
+import { formatINR, getPlan } from "@/data/pricing";
+import { cn } from "@/lib/utils";
 
-const CLOUD_MONTHLY_COST = 1500;
-
+/** Compares what each BirStock plan costs over a chosen number of years. */
 export function SavingsCalculator() {
   const [years, setYears] = useState(3);
+  const monthly = getPlan("monthly");
+  const yearly = getPlan("yearly");
+  const lifetime = getPlan("lifetime");
 
-  const cloudCost = useMemo(() => CLOUD_MONTHLY_COST * 12 * years, [years]);
+  const rows = useMemo(() => {
+    const data = [
+      { id: "monthly", label: `Monthly (${formatINR(monthly.price)}/mo)`, total: monthly.price * 12 * years },
+      { id: "yearly", label: `Yearly (${formatINR(yearly.price)}/yr)`, total: yearly.price * years },
+      { id: "lifetime", label: `Lifetime (${formatINR(lifetime.price)} once)`, total: lifetime.price },
+    ];
+    const max = Math.max(...data.map((d) => d.total));
+    const min = Math.min(...data.map((d) => d.total));
+    return data.map((d) => ({ ...d, pct: (d.total / max) * 100, best: d.total === min }));
+  }, [years, monthly.price, yearly.price, lifetime.price]);
+
+  const breakEvenVsMonthly = Math.ceil(lifetime.price / monthly.price);
 
   return (
     <Reveal>
       <div className="rounded-[var(--radius-xl)] border border-border bg-white p-6 shadow-[var(--shadow-card)] sm:p-10">
         <div className="flex flex-col gap-2 text-center">
-          <h3 className="font-display text-2xl font-bold text-foreground">
-            See what a subscription actually costs
-          </h3>
+          <h2 className="font-display text-2xl font-bold text-foreground">Which plan costs less for you?</h2>
           <p className="mx-auto max-w-lg text-sm text-muted-foreground">
-            A typical cloud POS subscription runs around &#8377;{CLOUD_MONTHLY_COST.toLocaleString("en-IN")}
-            /month. See how recurring fees accumulate over time compared to BirStock.
+            Slide to the number of years you expect to use BirStock and compare the total you would pay on each plan.
           </p>
         </div>
 
         <div className="mt-8">
           <div className="flex items-center justify-between text-sm font-medium text-foreground">
-            <span>Time horizon</span>
+            <label htmlFor="years">Time horizon</label>
             <span className="text-primary-darker">
               {years} {years === 1 ? "year" : "years"}
             </span>
           </div>
           <input
+            id="years"
             type="range"
             min={1}
-            max={5}
+            max={7}
             step={1}
             value={years}
             onChange={(e) => setYears(Number(e.target.value))}
@@ -41,34 +54,33 @@ export function SavingsCalculator() {
           />
           <div className="mt-1 flex justify-between text-xs text-muted-foreground">
             <span>1 yr</span>
-            <span>5 yrs</span>
+            <span>7 yrs</span>
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div className="rounded-[var(--radius-md)] border border-border bg-surface-muted p-5 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              Typical Cloud POS
-            </p>
-            <p className="mt-2 font-display text-3xl font-extrabold text-foreground">
-              &#8377;{cloudCost.toLocaleString("en-IN")}
-            </p>
-            <p className="mt-1 text-xs text-muted-foreground">over {years} years, recurring fees</p>
-          </div>
-          <div className="rounded-[var(--radius-md)] border border-primary-tint-strong bg-primary-tint p-5 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wide text-primary-darker">
-              BirStock
-            </p>
-            <p className="mt-2 font-display text-3xl font-extrabold text-primary-darker">
-              Transparent
-            </p>
-            <p className="mt-1 text-xs text-primary-darker/80">no forced monthly charges</p>
-          </div>
+        <div className="mt-8 space-y-4">
+          {rows.map((row) => (
+            <div key={row.id}>
+              <div className="flex items-center justify-between text-sm">
+                <span className="font-medium text-foreground">{row.label}</span>
+                <span className={cn("font-display font-bold", row.best ? "text-primary-darker" : "text-foreground")}>
+                  {formatINR(row.total)}
+                  {row.best ? <span className="ml-2 text-xs font-semibold">Lowest</span> : null}
+                </span>
+              </div>
+              <div className="mt-1.5 h-2.5 overflow-hidden rounded-full bg-surface-sunken">
+                <div
+                  className={cn("h-full rounded-full transition-all duration-500", row.best ? "bg-primary" : "bg-border-strong")}
+                  style={{ width: `${Math.max(row.pct, 4)}%` }}
+                />
+              </div>
+            </div>
+          ))}
         </div>
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          Illustrative estimate based on a typical &#8377;{CLOUD_MONTHLY_COST.toLocaleString("en-IN")}/month cloud POS
-          plan. Actual competitor pricing varies.
+          Lifetime costs less than Monthly after about {breakEvenVsMonthly} months. Yearly includes the BirStock Mobile App
+          mobile app; on Lifetime it is an optional add-on, and future feature modules are priced separately.
         </p>
       </div>
     </Reveal>

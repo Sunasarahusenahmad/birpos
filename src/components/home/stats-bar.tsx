@@ -1,11 +1,12 @@
 import { Container } from "@/components/ui/container";
 import { StaggerGroup, StaggerItem } from "@/components/motion/reveal";
+import { formatINR, getPlan } from "@/data/pricing";
 
 const stats = [
-  { value: "0", label: "Internet required to bill" },
-  { value: "6", label: "GST rate slabs supported" },
-  { value: "20", label: "Local backups auto-retained" },
-  { value: "58mm–A4", label: "Printer sizes supported" },
+  { value: "Offline", label: "Day-to-day billing after activation" },
+  { value: "5", label: "Built-in GST rates + IGST handling" },
+  { value: "20", label: "Local backups kept by default" },
+  { value: formatINR(getPlan("lifetime").price), label: "One-time lifetime licence" },
 ];
 
 export function StatsBar() {

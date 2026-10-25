@@ -1,38 +1,40 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/shared/page-hero";
 import { Reveal } from "@/components/motion/reveal";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { ButtonLink } from "@/components/ui/button";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
+import { JsonLd } from "@/components/seo/json-ld";
 import { faqCategories, flatFaqs } from "@/data/faqs";
 import { siteConfig } from "@/lib/site-config";
+import { faqSchema, graph, pageMetadata, webPageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Frequently Asked Questions",
-  description:
-    "Answers to common questions about BirStock - offline billing, GST invoicing, customer Khata, Google Drive backup, hardware compatibility, and pricing.",
-  alternates: { canonical: "/faq" },
-};
+const title = "BirStock FAQ - Offline Billing, GST, Backup, Mobile App & Pricing";
+const description =
+  "Answers about BirStock: when internet is needed, Google Drive backup, moving to a new PC, App Lock PIN recovery, Hold Cart, GST rates, financial year, updates, BirStock Mobile App and pricing.";
+
+export const metadata = pageMetadata({
+  title,
+  description,
+  path: "/faq",
+  og: "faq",
+  absoluteTitle: true,
+  keywords: ["birstock faq", "offline billing software questions", "billing software internet required", "pos software backup restore"],
+});
 
 export default function FaqPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: flatFaqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const jsonLd = graph(
+    webPageSchema({ name: title, description, path: "/faq", og: "faq" }),
+    faqSchema(flatFaqs)
+  );
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
+      <Breadcrumbs items={[{ name: "FAQ", path: "/faq" }]} />
 
       <PageHero
+        className="pt-8 sm:pt-12"
         eyebrow="Support"
         title="Frequently asked questions"
         description="Everything shop owners ask us before switching to BirStock. Still stuck? Reach out directly."

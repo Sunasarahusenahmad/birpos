@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { formatINR, plans } from "@/data/pricing";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { submitToWeb3Forms } from "@/lib/web3forms";
@@ -8,7 +9,7 @@ import { submitToWeb3Forms } from "@/lib/web3forms";
 const inquiryTypes = [
   { value: "download", label: "Download Request" },
   { value: "demo", label: "Schedule a Demo" },
-  { value: "pricing", label: "Request Pricing" },
+  { value: "pricing", label: "Buy a Plan / Pricing" },
   { value: "support", label: "Support" },
   { value: "general", label: "General Inquiry" },
 ];
@@ -17,6 +18,7 @@ export function ContactForm() {
   const searchParams = useSearchParams();
   const initialType = searchParams.get("type") ?? "general";
   const plan = searchParams.get("plan");
+  const selectedPlan = plans.find((p) => p.id === plan);
 
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState("");
@@ -101,6 +103,12 @@ export function ContactForm() {
           <input type="text" name="business" placeholder="Your store / business" className={inputClass} />
         </Field>
       </div>
+
+      {selectedPlan ? (
+        <p className="rounded-[var(--radius-sm)] border border-primary-tint-strong bg-primary-tint px-4 py-3 text-sm text-primary-darker">
+          Selected plan: <strong>{selectedPlan.name}</strong> - {formatINR(selectedPlan.price)} {selectedPlan.period}
+        </p>
+      ) : null}
 
       <Field label="What can we help with?" required>
         <select name="inquiry_type" defaultValue={initialType} required className={inputClass}>

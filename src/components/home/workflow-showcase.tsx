@@ -15,19 +15,19 @@ const steps = [
     icon: PackagePlus,
     title: "Bring in your stock",
     description:
-      "Catalog products with barcodes and pricing, then record supplier purchases - stock and dues update automatically.",
+      "Import your product list from Excel or add items with barcodes and prices, then record supplier purchases - stock and dues update automatically.",
   },
   {
     icon: ScanBarcode,
     title: "Start billing instantly",
     description:
-      "Scan or search, apply discounts, take payment, and print a GST-compliant receipt - all with zero internet dependency.",
+      "Scan or search, apply discounts, take payment, and print a GST invoice or receipt - no internet needed for daily billing.",
   },
   {
     icon: ShieldCheck,
     title: "Stay backed up, automatically",
     description:
-      "BirStock quietly backs up your data locally and to your own Google Drive on the schedule you set - every single day.",
+      "BirStock backs up your data locally and, if you connect it, to your own Google Drive - on the schedule you set.",
   },
 ];
 
@@ -37,8 +37,8 @@ export function WorkflowShowcase() {
       <Container>
         <SectionHeading
           eyebrow="How it works"
-          title="From install to your first bill in under an hour"
-          description="No servers to configure, no monthly onboarding calls - BirStock is designed to get a real shop counter live fast."
+          title="From install to your first bill - fast"
+          description="No servers to configure - BirStock is designed to get a real shop counter live the same day."
         />
 
         <div className="relative mt-16">

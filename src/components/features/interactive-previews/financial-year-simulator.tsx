@@ -42,7 +42,7 @@ export function FinancialYearSimulator() {
               BirStock Financial Year Isolation &amp; Carry-Forward Engine
             </h4>
             <p className="text-[0.68rem] text-muted-foreground">
-              Automated opening balances transfer with audited past year tamper-lock
+              Carry forward stock and balances into the new year (illustrative demo)
             </p>
           </div>
         </div>
@@ -79,7 +79,7 @@ export function FinancialYearSimulator() {
 
             <div>
               <label className="text-[0.7rem] font-bold uppercase text-muted-foreground">
-                Master Security PIN Authorization
+                Confirm with your PIN
               </label>
               <div className="mt-1 flex items-center gap-2">
                 <input
@@ -89,7 +89,7 @@ export function FinancialYearSimulator() {
                   className="w-full rounded border border-border px-3 py-1.5 text-xs font-mono text-foreground focus:border-primary focus:outline-none"
                 />
                 <span className="rounded bg-surface-muted px-2 py-1 text-[0.65rem] font-semibold text-muted-foreground">
-                  Required
+                  Demo
                 </span>
               </div>
             </div>
@@ -141,7 +141,7 @@ export function FinancialYearSimulator() {
               </button>
             </div>
             <p className="text-[0.65rem] text-muted-foreground">
-              Past financial years remain strictly read-only to safeguard tax audit filings.
+              Each financial year keeps its own records - switch back any time to look things up.
             </p>
           </div>
         </div>
@@ -205,7 +205,7 @@ export function FinancialYearSimulator() {
           </div>
 
           <div className="rounded-lg border border-border bg-white p-3 text-[0.65rem] text-muted-foreground text-center">
-            Clean isolation guarantees that new fiscal year edits never tamper with past tax records.
+            Sample figures for illustration. Take a backup before closing a financial year.
           </div>
         </div>
       </div>

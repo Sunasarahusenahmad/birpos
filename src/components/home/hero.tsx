@@ -1,14 +1,14 @@
 import { WifiOff, IndianRupee, ShieldCheck, CloudUpload } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Reveal } from "@/components/motion/reveal";
 import { PosMockup } from "@/components/home/pos-mockup";
+import { formatINR, getPlan } from "@/data/pricing";
 
 const trustPoints = [
   { icon: ShieldCheck, label: "Your Data is Yours" },
-  { icon: WifiOff, label: "100% Offline-First" },
-  { icon: IndianRupee, label: "Zero Monthly Fees" },
+  { icon: WifiOff, label: "Offline Daily Billing" },
+  { icon: IndianRupee, label: `${formatINR(getPlan("lifetime").price)} Lifetime Option` },
   { icon: CloudUpload, label: "Google Drive Backup" },
 ];
 
@@ -26,7 +26,7 @@ export function Hero() {
                 <ShieldCheck className="h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} />
                 <span className="font-extrabold tracking-tight">Your Data is Yours</span>
                 <span className="text-primary/30">·</span>
-                <span className="font-medium text-foreground/80">100% Offline-First POS &amp; ERP</span>
+                <span className="font-medium text-foreground/80">Offline-First POS &amp; ERP</span>
               </div>
             </Reveal>
 
@@ -40,15 +40,16 @@ export function Hero() {
 
             <Reveal delay={0.16}>
               <p className="text-balance mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                100% offline desktop billing, multi-rate GST invoicing, customer Khata, supplier
-                ledgers, and automated Google Drive backup - one app, zero recurring
-                subscription.
+                Offline desktop billing, GST invoicing, inventory, customer Khata, supplier ledgers and
+                Google Drive backup - plus billing from your phone with the BirStock Mobile App. From{" "}
+                {formatINR(getPlan("monthly").price)}/month, or own it for a one-time{" "}
+                {formatINR(getPlan("lifetime").price)}.
               </p>
             </Reveal>
 
             <Reveal delay={0.24}>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="/contact?type=download" size="lg">
+                <ButtonLink href="/download" size="lg">
                   Download Now
                 </ButtonLink>
                 <ButtonLink href="/contact?type=demo" variant="outline" size="lg">

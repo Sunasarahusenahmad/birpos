@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ArrowLeft, Check, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Info, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { FeatureIcon } from "@/components/ui/feature-icon";
@@ -10,8 +10,11 @@ import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { FinalCta } from "@/components/home/final-cta";
 import { features, getFeature } from "@/data/features";
-import { siteConfig } from "@/lib/site-config";
 import { FeaturePreviewDispatcher } from "@/components/features/interactive-previews/feature-preview-dispatcher";
+import { hasFeaturePreview } from "@/components/features/interactive-previews/preview-slugs";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faqSchema, graph, howToSchema, pageMetadata, webPageSchema } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -24,16 +27,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const feature = getFeature(slug);
   if (!feature) return {};
 
-  return {
-    title: feature.name,
+  return pageMetadata({
+    title: feature.seoTitle,
     description: feature.metaDescription,
-    alternates: { canonical: `/features/${feature.slug}` },
-    openGraph: {
-      title: `${feature.name} | ${siteConfig.name}`,
-      description: feature.metaDescription,
-      url: `${siteConfig.url}/features/${feature.slug}`,
-    },
-  };
+    path: `/features/${feature.slug}`,
+    og: `feature-${feature.slug}`,
+    keywords: feature.keywords,
+  });
 }
 
 export default async function FeatureDetailPage({ params }: Props) {
@@ -41,39 +41,32 @@ export default async function FeatureDetailPage({ params }: Props) {
   const feature = getFeature(slug);
   if (!feature) notFound();
 
-  const currentIndex = features.findIndex((f) => f.slug === slug);
-  const related = features.filter((_, i) => i !== currentIndex).slice(0, 3);
+  const related = feature.related
+    .map((r) => features.find((f) => f.slug === r))
+    .filter((f): f is NonNullable<typeof f> => Boolean(f));
+  const path = `/features/${feature.slug}`;
+  const showPreview = hasFeaturePreview(feature.slug);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: feature.faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const jsonLd = graph(
+    webPageSchema({ name: feature.seoTitle, description: feature.metaDescription, path, og: `feature-${feature.slug}` }),
+    howToSchema(`How ${feature.shortName} works in BirStock`, feature.workflow),
+    faqSchema(feature.faqs)
+  );
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLd data={jsonLd} />
+      <Breadcrumbs
+        items={[
+          { name: "Features", path: "/features" },
+          { name: feature.shortName, path },
+        ]}
       />
 
-      <section className="relative overflow-hidden pb-16 pt-14 sm:pb-20 sm:pt-20">
+      <section className="relative overflow-hidden pb-16 pt-8 sm:pb-20 sm:pt-12">
         <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,black_10%,transparent_70%)]" />
         <Container className="relative">
-          <Reveal>
-            <Link
-              href="/features"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary-darker"
-            >
-              <ArrowLeft className="h-3.5 w-3.5" /> All features
-            </Link>
-          </Reveal>
-
-          <div className="mt-6 flex flex-col items-start gap-6">
+          <div className="flex flex-col items-start gap-6">
             <Reveal delay={0.05}>
               <FeatureIcon icon={feature.icon} className="h-14 w-14" iconClassName="h-6 w-6" />
             </Reveal>
@@ -96,8 +89,8 @@ export default async function FeatureDetailPage({ params }: Props) {
                   <ButtonLink href="/contact?type=demo" size="lg">
                     See it in a demo
                   </ButtonLink>
-                  <ButtonLink href="/contact?type=download" variant="outline" size="lg">
-                    Download Now
+                  <ButtonLink href="/pricing" variant="outline" size="lg">
+                    See Pricing
                   </ButtonLink>
                 </div>
               </Reveal>
@@ -106,31 +99,38 @@ export default async function FeatureDetailPage({ params }: Props) {
         </Container>
       </section>
 
-      {/* Live Interactive Software Simulator */}
-      <section className="pb-16 sm:pb-20">
-        <Container>
-          <Reveal>
-            <div className="mb-8 flex flex-col items-center text-center">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-tint px-3 py-1 text-xs font-bold text-primary-darker">
-                <Sparkles className="h-3.5 w-3.5" /> Interactive Workflow Simulation
-              </span>
-              <h2 className="mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl">
-                See {feature.shortName} in Action
-              </h2>
-              <p className="mt-2 max-w-lg text-sm text-muted-foreground">
-                Interact with the native interface below to see how BirStock operates at your counter - instant local execution, automated guard rails, and zero lag.
-              </p>
-            </div>
-          </Reveal>
+      {showPreview ? (
+        <section className="pb-16 sm:pb-20">
+          <Container>
+            <Reveal>
+              <div className="mb-8 flex flex-col items-center text-center">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-tint px-3 py-1 text-xs font-bold text-primary-darker">
+                  <Sparkles className="h-3.5 w-3.5" /> Illustrative demo
+                </span>
+                <h2 className="mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl">
+                  See {feature.shortName} in action
+                </h2>
+                <p className="mt-2 max-w-lg text-sm text-muted-foreground">
+                  An interactive mock-up of the BirStock workflow. Names and figures are sample data for
+                  illustration - not a live connection to the app or real customer records.
+                </p>
+              </div>
+            </Reveal>
 
-          <Reveal delay={0.1}>
-            <FeaturePreviewDispatcher slug={feature.slug} />
-          </Reveal>
-        </Container>
-      </section>
+            <Reveal delay={0.1}>
+              <FeaturePreviewDispatcher slug={feature.slug} />
+            </Reveal>
+          </Container>
+        </section>
+      ) : null}
 
       <section className="pb-20 sm:pb-24">
         <Container>
+          <Reveal>
+            <h2 className="mb-8 font-display text-2xl font-bold text-foreground sm:text-3xl">
+              What you get with {feature.shortName}
+            </h2>
+          </Reveal>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {feature.highlights.map((point, i) => (
               <Reveal key={point} delay={i * 0.05}>
@@ -143,6 +143,24 @@ export default async function FeatureDetailPage({ params }: Props) {
               </Reveal>
             ))}
           </div>
+
+          {feature.note ? (
+            <Reveal delay={0.1}>
+              <div className="mt-8 rounded-[var(--radius-lg)] border border-primary-tint-strong bg-primary-tint/60 p-6">
+                <h3 className="flex items-center gap-2 font-display text-base font-semibold text-foreground">
+                  <Info className="h-4 w-4 text-primary-darker" /> {feature.note.title}
+                </h3>
+                <ul className="mt-3 space-y-2">
+                  {feature.note.points.map((pt) => (
+                    <li key={pt} className="flex items-start gap-2 text-sm leading-relaxed text-foreground/85">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ) : null}
         </Container>
       </section>
 
@@ -154,7 +172,13 @@ export default async function FeatureDetailPage({ params }: Props) {
             </h2>
           </Reveal>
 
-          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div
+            className={
+              feature.workflow.length === 3
+                ? "mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3"
+                : "mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
+            }
+          >
             {feature.workflow.map((step, i) => (
               <Reveal key={step.step} delay={i * 0.06}>
                 <div className="h-full rounded-[var(--radius-lg)] border border-border bg-white p-6">
@@ -205,6 +229,7 @@ export default async function FeatureDetailPage({ params }: Props) {
                   <h3 className="mt-4 font-display text-base font-semibold text-foreground">
                     {f.name}
                   </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.tagline}</p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-darker">
                     Learn more
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />

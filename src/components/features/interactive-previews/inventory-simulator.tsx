@@ -108,7 +108,7 @@ export function InventorySimulator() {
               BirStock Inventory Master &amp; Stock Inward Engine
             </h4>
             <p className="text-[0.68rem] text-muted-foreground">
-              Real-time local embedded stock ledger · Zero internet needed
+              Local stock ledger · works offline (illustrative demo)
             </p>
           </div>
         </div>

@@ -39,7 +39,7 @@ export function ReportsSimulator() {
           </div>
           <div>
             <h4 className="text-xs font-bold text-foreground sm:text-sm">
-              BirStock Real-Time Analytics &amp; Profit Engine
+              BirStock Reports &amp; Profit Overview
             </h4>
             <p className="text-[0.68rem] text-muted-foreground">
               Instant local calculations · Zero cloud lag or monthly sync waits
@@ -49,7 +49,7 @@ export function ReportsSimulator() {
 
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-1 rounded-full bg-primary-tint px-2.5 py-0.5 text-xs font-semibold text-primary-darker">
-            <Zap className="h-3 w-3" /> 0.2ms Query Speed
+            <Zap className="h-3 w-3" /> Sample data
           </span>
         </div>
       </div>
@@ -73,7 +73,7 @@ export function ReportsSimulator() {
           </div>
 
           <span className="text-[0.68rem] font-mono text-muted-foreground">
-            Live local snapshot · Auto-updates on every bill
+            Illustrative demo · sample figures, not real store data
           </span>
         </div>
 

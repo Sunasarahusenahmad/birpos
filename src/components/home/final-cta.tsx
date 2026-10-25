@@ -23,7 +23,7 @@ export function FinalCta() {
               </p>
               <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
                 <ButtonLink
-                  href="/contact?type=download"
+                  href="/download"
                   size="lg"
                   className="bg-white text-primary-darker hover:bg-white/90"
                 >

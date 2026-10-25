@@ -1,13 +1,10 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
-  ArrowLeft,
   ArrowRight,
   Check,
   AlertCircle,
   Sparkles,
-  ShieldCheck,
   Cpu,
   Store,
 } from "lucide-react";
@@ -18,7 +15,9 @@ import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { FinalCta } from "@/components/home/final-cta";
 import { industries, getIndustry } from "@/data/industries";
-import { siteConfig } from "@/lib/site-config";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faqSchema, graph, pageMetadata, webPageSchema } from "@/lib/seo";
 import { FeaturePreviewDispatcher } from "@/components/features/interactive-previews/feature-preview-dispatcher";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -27,21 +26,18 @@ export function generateStaticParams() {
   return industries.map((ind) => ({ slug: ind.slug }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const industry = getIndustry(slug);
   if (!industry) return {};
 
-  return {
+  return pageMetadata({
     title: industry.metaTitle,
     description: industry.metaDescription,
-    alternates: { canonical: `/industries/${industry.slug}` },
-    openGraph: {
-      title: `${industry.metaTitle} | ${siteConfig.name}`,
-      description: industry.metaDescription,
-      url: `${siteConfig.url}/industries/${industry.slug}`,
-    },
-  };
+    path: `/industries/${industry.slug}`,
+    og: `industry-${industry.slug}`,
+    keywords: industry.keywords,
+  });
 }
 
 export default async function IndustryDetailPage({ params }: Props) {
@@ -52,40 +48,27 @@ export default async function IndustryDetailPage({ params }: Props) {
   const currentIndex = industries.findIndex((ind) => ind.slug === slug);
   const otherIndustries = industries.filter((_, idx) => idx !== currentIndex);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: industry.faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const path = `/industries/${industry.slug}`;
+  const jsonLd = graph(
+    webPageSchema({ name: industry.metaTitle, description: industry.metaDescription, path, og: `industry-${industry.slug}` }),
+    faqSchema(industry.faqs)
+  );
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLd data={jsonLd} />
+      <Breadcrumbs
+        items={[
+          { name: "Industries", path: "/industries" },
+          { name: industry.shortName, path },
+        ]}
       />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pb-14 pt-12 sm:pb-18 sm:pt-18">
+      <section className="relative overflow-hidden pb-14 pt-8 sm:pb-18 sm:pt-12">
         <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,black_10%,transparent_70%)]" />
         <Container className="relative">
-          <Reveal>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              <Link href="/" className="hover:text-primary-darker">
-                Home
-              </Link>
-              <span>/</span>
-              <span>Industries</span>
-              <span>/</span>
-              <span className="text-primary-darker">{industry.shortName}</span>
-            </div>
-          </Reveal>
-
-          <div className="mt-6 max-w-3xl">
+          <div className="max-w-3xl">
             <Reveal delay={0.05}>
               <Badge>{industry.tagline}</Badge>
             </Reveal>
@@ -107,8 +90,8 @@ export default async function IndustryDetailPage({ params }: Props) {
                 <ButtonLink href="/contact?type=demo" size="lg">
                   Schedule Free Store Demo
                 </ButtonLink>
-                <ButtonLink href="/contact?type=download" variant="outline" size="lg">
-                  Download Free Trial
+                <ButtonLink href="/pricing" variant="outline" size="lg">
+                  See Pricing
                 </ButtonLink>
               </div>
             </Reveal>
@@ -122,13 +105,13 @@ export default async function IndustryDetailPage({ params }: Props) {
           <Reveal>
             <div className="mb-8 flex flex-col items-center text-center">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-tint px-3 py-1 text-xs font-bold text-primary-darker">
-                <Sparkles className="h-3.5 w-3.5" /> Interactive Workflow Demonstration
+                <Sparkles className="h-3.5 w-3.5" /> Illustrative demo
               </span>
               <h2 className="mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl">
                 How BirStock Works for {industry.name}
               </h2>
               <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-                Try the interactive simulation below to see the lightning-fast, offline interface in action.
+                An interactive mock-up of the BirStock workflow. Names and figures are sample data, not real customer records.
               </p>
             </div>
           </Reveal>
@@ -145,7 +128,7 @@ export default async function IndustryDetailPage({ params }: Props) {
           <Reveal>
             <div className="text-center">
               <span className="text-xs font-bold uppercase tracking-wider text-primary">
-                Why Cloud POS Fails Here
+                Common Challenges
               </span>
               <h2 className="mt-2 font-display text-2xl font-bold text-foreground sm:text-3xl">
                 Common Counter Bottlenecks &amp; How BirStock Solves Them
@@ -225,7 +208,7 @@ export default async function IndustryDetailPage({ params }: Props) {
                   Works with the hardware you already own
                 </h2>
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  BirStock auto-detects USB, Bluetooth, and network peripherals out of the box with zero proprietary hardware lock-in.
+                  BirStock works with standard barcode scanners in keyboard mode and any printer installed in Windows - no proprietary hardware required.
                 </p>
               </div>
             </Reveal>

@@ -2,31 +2,32 @@ import { ShieldCheck, Zap, IndianRupee, CloudUpload } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { StaggerGroup, StaggerItem } from "@/components/motion/reveal";
+import { formatINR, getPlan } from "@/data/pricing";
 
 const pillars = [
   {
     icon: ShieldCheck,
     title: "Your data is yours",
     description:
-      "Your catalog, customer Khata, and sales records stay 100% on your local machine. No cloud vendor can see your margins, lock you out, or hike subscription prices.",
+      "Your catalogue, customer Khata and sales records live in a local database on your own PC - not on a cloud vendor's server where they can see your margins.",
   },
   {
     icon: Zap,
     title: "Never stop billing",
     description:
-      "No internet? Slow Wi-Fi? Doesn't matter. BirStock runs entirely on your computer with instant response times - your counter never freezes and your business never stops.",
+      "No internet? Slow Wi-Fi? Day-to-day billing runs on your computer, so your counter keeps working. Internet is only needed for things like licence checks, updates and cloud backup.",
   },
   {
     icon: IndianRupee,
-    title: "Zero monthly subscriptions",
+    title: "Pay your way",
     description:
-      "Stop paying a SaaS company every single month just to run your own cash register. Own your software outright and keep the savings, year after year.",
+      `Start at ${formatINR(getPlan("monthly").price)}/month, save with ${formatINR(getPlan("yearly").price)}/year (mobile app included), or pay a one-time ${formatINR(getPlan("lifetime").price)} and own your licence forever.`,
   },
   {
     icon: CloudUpload,
     title: "Google Drive peace of mind",
     description:
-      "Get cloud-grade safety without cloud vulnerability. BirStock automatically backs up your encrypted database to your own personal Google Drive, on your schedule.",
+      "BirStock keeps local backups and can back up to your own Google Drive automatically, at the time you choose - so a PC crash doesn't mean lost data.",
   },
 ];
 
