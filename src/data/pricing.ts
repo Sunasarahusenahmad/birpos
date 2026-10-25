@@ -22,9 +22,13 @@ export type Plan = {
 };
 
 export const CURRENCY = "INR";
-/** Published prices include GST. */
-export const PRICES_INCLUDE_GST = true;
+/** Whether published prices include GST. Flip this one value to change it site-wide. */
+export const PRICES_INCLUDE_GST = false;
 export const TAX_LABEL = PRICES_INCLUDE_GST ? "incl. GST" : "+ GST";
+/** Sentence used on the pricing page, FAQ and Terms. */
+export const TAX_SENTENCE = PRICES_INCLUDE_GST
+  ? "All prices are inclusive of GST."
+  : "All prices are exclusive of GST - GST is charged extra as applicable.";
 
 export const plans: Plan[] = [
   {
@@ -117,4 +121,4 @@ export function yearlySaving() {
 /** Plain-English pricing summary reused in FAQ answers and meta descriptions. */
 export const pricingSummary = `${formatINR(getPlan("monthly").price)}/month, ${formatINR(
   getPlan("yearly").price
-)}/year (includes the BirStock Mobile App), or ${formatINR(getPlan("lifetime").price)} one-time for a permanent licence`;
+)}/year (includes the BirStock Mobile App), or ${formatINR(getPlan("lifetime").price)} one-time for a permanent licence${PRICES_INCLUDE_GST ? " (GST included)" : " (plus GST)"}`;

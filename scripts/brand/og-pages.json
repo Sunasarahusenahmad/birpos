@@ -15,7 +15,7 @@
     "key": "pricing",
     "eyebrow": "Pricing",
     "title": "Pay monthly, yearly, or once",
-    "subtitle": "Every plan includes the full desktop app. Yearly adds the Android & iOS mobile app. Prices include GST.",
+    "subtitle": "Every plan includes the full desktop app. Yearly adds the Android & iOS mobile app. Prices exclude GST.",
     "icon": "badge-indian-rupee",
     "chips": [
       "Monthly ₹799",
@@ -62,8 +62,15 @@
     "key": "contact",
     "eyebrow": "Contact",
     "title": "Let's get your counter set up",
-    "subtitle": "Download, demo, pricing or support - call +91 81560 00337 or email support@birstock.com.",
+    "subtitle": "Download, demo, pricing or support - call +91 81560 00334 or email support@birstock.com.",
     "icon": "mail"
+  },
+  {
+    "key": "site-map",
+    "eyebrow": "Sitemap",
+    "title": "Every BirStock page in one place",
+    "subtitle": "Features, mobile app, industries, pricing, download, support and legal pages.",
+    "icon": "layout-grid"
   },
   {
     "key": "privacy",
@@ -85,6 +92,13 @@
     "title": "Refund Policy",
     "subtitle": "How refunds work for BirStock Monthly, Yearly and Lifetime plans.",
     "icon": "receipt-text"
+  },
+  {
+    "key": "custom-billing-software",
+    "eyebrow": "Customisation",
+    "title": "BirStock, customised for your business",
+    "subtitle": "Your invoice formats, reports, workflows and industry modules - priced on your requirements.",
+    "icon": "puzzle"
   },
   {
     "key": "offline-billing-software",

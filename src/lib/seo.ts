@@ -121,6 +121,7 @@ export function organizationSchema() {
       },
     ],
     brand: { "@type": "Brand", name: siteConfig.name, logo: `${siteConfig.url}${siteConfig.brand.logoSquare}` },
+    knowsAbout: ["Point of sale software", "GST billing", "Inventory management", "Custom software development"],
   };
 }
 

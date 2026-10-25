@@ -1,6 +1,7 @@
 import { LegalPage } from "@/components/shared/legal-page";
 import { siteConfig } from "@/lib/site-config";
 import { pageMetadata } from "@/lib/seo";
+import { TAX_SENTENCE } from "@/data/pricing";
 
 export const metadata = pageMetadata({
   title: "Terms of Service",
@@ -65,7 +66,7 @@ export default function TermsPage() {
             pricing page
           </a>
           . Monthly and Yearly plans are paid for each period; to keep using BirStock after a period
-          ends, renew your plan. The Lifetime licence is a one-time payment. Published prices include GST. Prices may change for
+          ends, renew your plan. The Lifetime licence is a one-time payment. {TAX_SENTENCE} Prices may change for
           future purchases and renewals; changes do not affect a period you have already paid for.
         </p>
       </div>

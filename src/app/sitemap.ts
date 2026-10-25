@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/features", og: "features", priority: 0.9, changeFrequency: "monthly" },
     { path: "/industries", og: "industries", priority: 0.85, changeFrequency: "monthly" },
     { path: "/download", og: "download", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/custom-billing-software", og: "custom-billing-software", priority: 0.85, changeFrequency: "monthly" },
     ...Object.values(landingPages).map((p) => ({
       path: `/${p.slug}`,
       og: p.og,
@@ -40,6 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/faq", og: "faq", priority: 0.7, changeFrequency: "monthly" },
     { path: "/about", og: "about", priority: 0.6, changeFrequency: "yearly" },
     { path: "/contact", og: "contact", priority: 0.6, changeFrequency: "yearly" },
+    { path: "/site-map", og: "site-map", priority: 0.4, changeFrequency: "monthly" },
     { path: "/privacy", og: "privacy", priority: 0.3, changeFrequency: "yearly" },
     { path: "/terms", og: "terms", priority: 0.3, changeFrequency: "yearly" },
     { path: "/refund-policy", og: "refund-policy", priority: 0.3, changeFrequency: "yearly" },

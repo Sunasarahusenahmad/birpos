@@ -5,11 +5,13 @@ import { Logo } from "@/components/ui/logo";
 import { footerNav, siteConfig } from "@/lib/site-config";
 import { NewsletterForm } from "@/components/layout/newsletter-form";
 import { SocialLinks } from "@/components/layout/social-links";
+import { FooterWordmark } from "@/components/layout/footer-wordmark";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-surface-muted">
-      <Container className="py-14 sm:py-16">
+    <footer className="relative isolate overflow-hidden border-t border-border bg-surface-muted">
+      <FooterWordmark />
+      <Container className="relative z-10 py-14 sm:py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.9fr_1fr_0.8fr_1.2fr]">
           <div className="max-w-sm sm:col-span-2 lg:col-span-1">
             <div className="flex flex-col items-start gap-2.5">

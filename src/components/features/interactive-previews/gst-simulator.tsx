@@ -209,7 +209,7 @@ export function GstSimulator() {
               <div className="text-center border-b border-dashed border-border pb-2 space-y-0.5">
                 <p className="font-extrabold text-xs">BIRSTOCK HYPERMART</p>
                 <p className="text-[0.6rem] text-muted-foreground">GSTIN: 24AAACB1234D1Z5</p>
-                <p className="text-[0.6rem] text-muted-foreground">Ph: +91 81560 00337 · Gujarat, IN</p>
+                <p className="text-[0.6rem] text-muted-foreground">Ph: +91 81560 00334 · Gujarat, IN</p>
                 <p className="font-bold text-primary-darker mt-1">
                   {docType === "tax_invoice" ? "TAX INVOICE" : "BILL OF SUPPLY"}
                 </p>

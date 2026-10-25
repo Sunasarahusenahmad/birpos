@@ -7,6 +7,8 @@ import { BeyondBilling } from "@/components/home/beyond-billing";
 import { FeaturesGrid } from "@/components/home/features-grid";
 import { PricingTeaser } from "@/components/home/pricing-teaser";
 import { Comparison } from "@/components/home/comparison";
+import { ClientLogos } from "@/components/clients/client-logos";
+import { CustomizationSection } from "@/components/clients/customization-section";
 import { FaqPreview } from "@/components/home/faq-preview";
 import { FinalCta } from "@/components/home/final-cta";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -41,6 +43,8 @@ export default function Home() {
       <BeyondBilling />
       <FeaturesGrid />
       <PricingTeaser />
+      <CustomizationSection />
+      <ClientLogos />
       <Comparison />
       <FaqPreview />
       <FinalCta />

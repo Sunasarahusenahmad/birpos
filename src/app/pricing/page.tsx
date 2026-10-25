@@ -7,9 +7,10 @@ import { SavingsCalculator } from "@/components/pricing/savings-calculator";
 import { PricingCards } from "@/components/pricing/pricing-cards";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 import { FinalCta } from "@/components/home/final-cta";
+import { CustomizationSection } from "@/components/clients/customization-section";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
-import { formatINR, getPlan, plans, yearlySaving } from "@/data/pricing";
+import { PRICES_INCLUDE_GST, formatINR, getPlan, plans, yearlySaving } from "@/data/pricing";
 import { siteConfig } from "@/lib/site-config";
 import { faqSchema, graph, offersSchema, pageMetadata, webPageSchema } from "@/lib/seo";
 
@@ -80,7 +81,9 @@ const pricingFaqs = [
   },
   {
     q: "Do prices include GST?",
-    a: "Yes. All BirStock prices shown on this website are inclusive of GST.",
+    a: PRICES_INCLUDE_GST
+      ? "Yes. All BirStock prices shown on this website are inclusive of GST."
+      : "No. All BirStock prices shown on this website are exclusive of GST. GST is added at the applicable rate on your invoice.",
   },
   {
     q: "Can I switch plans later?",
@@ -89,6 +92,10 @@ const pricingFaqs = [
   {
     q: "Is pricing per PC?",
     a: "Plan prices cover one Windows PC. For more counters or branches, contact us for additional licences - each PC runs its own BirStock database.",
+  },
+  {
+    q: "Can BirStock be customised for my business?",
+    a: "Yes. Beyond the standard plans, our team can customise invoice formats, reports, workflows and add industry-specific features - as we did for iQiP. Customisation is priced per project based on your requirements.",
   },
   {
     q: "Can I try BirStock before paying?",
@@ -130,7 +137,7 @@ export default function PricingPage() {
           <PricingCards />
           <Reveal delay={0.1}>
             <p className="mt-8 text-center text-sm text-muted-foreground">
-              Prices in Indian Rupees (INR), inclusive of GST, per Windows PC. Need several counters or branches?{" "}
+              Prices in Indian Rupees (INR), {PRICES_INCLUDE_GST ? "inclusive of GST" : "exclusive of GST (GST extra)"}, per Windows PC. Need several counters or branches?{" "}
               <Link href="/contact?type=pricing" className="font-medium text-primary-darker hover:underline">
                 Ask for a multi-PC quote
               </Link>
@@ -239,6 +246,8 @@ export default function PricingPage() {
           </div>
         </Container>
       </section>
+
+      <CustomizationSection className="pt-20 sm:pt-24" />
 
       <section className="py-20 sm:py-24">
         <Container className="max-w-3xl">

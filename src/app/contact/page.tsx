@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/shared/page-hero";
 import { Reveal } from "@/components/motion/reveal";
 import { ContactForm } from "@/components/contact/contact-form";
+import { SocialLinks } from "@/components/layout/social-links";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/site-config";
@@ -11,7 +12,7 @@ import { graph, pageMetadata, webPageSchema } from "@/lib/seo";
 
 const title = "Contact BirStock - Download, Demo, Pricing & Support";
 const description =
-  "Contact the BirStock team to request a download, book a live demo, buy a plan, or get support. Call +91 81560 00337 or email support@birstock.com. Banaskantha, Gujarat.";
+  `Contact the BirStock team to request a download, book a live demo, buy a plan, or get support. Call ${siteConfig.phoneDisplay} or email ${siteConfig.email}. Banaskantha, Gujarat.`;
 
 export const metadata = pageMetadata({ title, description, path: "/contact", og: "contact", absoluteTitle: true });
 
@@ -60,6 +61,10 @@ export default function ContactPage() {
                     <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                     <span>{siteConfig.hours}</span>
                   </div>
+                </div>
+                <div className="mt-6 border-t border-border pt-5">
+                  <p className="text-sm font-semibold text-foreground">Follow BirStock</p>
+                  <SocialLinks className="mt-3" />
                 </div>
               </div>
 

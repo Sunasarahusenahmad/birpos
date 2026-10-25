@@ -135,6 +135,10 @@ export const faqCategories: FaqCategory[] = [
         a: "Each plan covers one Windows PC. For more counters or branches, contact us for additional licences - each PC runs its own BirStock database.",
       },
       {
+        q: "Can BirStock be customised for my business?",
+        a: "Yes. Our team can customise BirStock with your invoice formats, reports, workflows and industry-specific features - we built a customised version for iQiP. Customisation is priced per project based on your requirements.",
+      },
+      {
         q: "Can I try BirStock before buying?",
         a: "Yes. Request a demo and our team will walk you through BirStock and help you set up a trial so you can test it with your own products.",
       },

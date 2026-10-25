@@ -10,8 +10,8 @@ export const siteConfig = {
   url: "https://birstock.com",
   company: "Birtik Tech",
   email: "support@birstock.com",
-  phone: "+91 81560 00337",
-  phoneDisplay: "+91 81560 00337",
+  phone: "+91 81560 00334",
+  phoneDisplay: "+91 81560 00334",
   locale: "en_IN",
   address: {
     line1: "C/111, 1st Floor, Orchid Complex, Pirojpura",
@@ -72,6 +72,7 @@ export const footerNav = {
     { label: "GST Billing Software", href: "/gst-billing-software" },
     { label: "Retail Shop Billing", href: "/billing-software-for-retail-shop" },
     { label: "Pricing", href: "/pricing" },
+    { label: "Custom Billing Software", href: "/custom-billing-software" },
     { label: "Download", href: "/download" },
     { label: "Request a Demo", href: "/contact?type=demo" },
   ],
@@ -88,6 +89,7 @@ export const footerNav = {
     { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },
     { label: "FAQ", href: "/faq" },
+    { label: "Sitemap", href: "/site-map" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },

@@ -10,6 +10,7 @@ const inquiryTypes = [
   { value: "download", label: "Download Request" },
   { value: "demo", label: "Schedule a Demo" },
   { value: "pricing", label: "Buy a Plan / Pricing" },
+  { value: "customization", label: "Customisation for my business" },
   { value: "support", label: "Support" },
   { value: "general", label: "General Inquiry" },
 ];

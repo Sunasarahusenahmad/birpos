@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/shared/page-hero";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion/reveal";
 import { FinalCta } from "@/components/home/final-cta";
+import { ClientLogos } from "@/components/clients/client-logos";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { SocialLinks } from "@/components/layout/social-links";
@@ -145,6 +146,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
+      <ClientLogos />
       <FinalCta />
     </>
   );
