@@ -2,7 +2,7 @@ import { WifiOff, IndianRupee, ShieldCheck, CloudUpload } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
-import { PosMockup } from "@/components/home/pos-mockup";
+import { HeroShowcase } from "@/components/home/hero-showcase";
 import { formatINR, getPlan } from "@/data/pricing";
 
 const trustPoints = [
@@ -24,26 +24,24 @@ export function Hero() {
             <Reveal>
               <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary-tint px-3.5 py-1.5 text-xs font-semibold text-primary-darker shadow-sm sm:text-sm">
                 <ShieldCheck className="h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} />
-                <span className="font-extrabold tracking-tight">Your Data is Yours</span>
+                <span className="font-extrabold tracking-tight">Made in Gujarat</span>
                 <span className="text-primary/30">·</span>
-                <span className="font-medium text-foreground/80">Offline-First POS &amp; ERP</span>
+                <span className="font-medium text-foreground/80">Offline POS, GST Billing &amp; Inventory</span>
               </div>
             </Reveal>
 
             <Reveal delay={0.08}>
               <h1 className="text-balance mt-5 font-display text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-[3.4rem] lg:leading-[1.08]">
-                Your data is yours.{" "}
-                <span className="text-primary">Fast, offline POS &amp; inventory</span> for your
-                store
+                Billing software your shop <span className="text-primary">owns.</span> Not rents.
               </h1>
             </Reveal>
 
             <Reveal delay={0.16}>
               <p className="text-balance mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                Offline desktop billing, GST invoicing, inventory, customer Khata, supplier ledgers and
-                Google Drive backup - plus billing from your phone with the BirStock Mobile App. From{" "}
-                {formatINR(getPlan("monthly").price)}/month, or own it for a one-time{" "}
-                {formatINR(getPlan("lifetime").price)}.
+                Most billing apps charge you every year and keep your records on their cloud. BirStock
+                runs on your own PC, keeps billing when the internet drops, and backs up to your own
+                Google Drive. Start at {formatINR(getPlan("basic").price)}/year, or pay{" "}
+                {formatINR(getPlan("lifetime").price)} once and own it forever.
               </p>
             </Reveal>
 
@@ -70,7 +68,7 @@ export function Hero() {
             </Reveal>
           </div>
 
-          <PosMockup />
+          <HeroShowcase />
         </div>
       </Container>
     </section>

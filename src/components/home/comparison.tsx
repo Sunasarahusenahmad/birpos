@@ -1,14 +1,59 @@
-import { Check, X } from "lucide-react";
+import { Check } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/motion/reveal";
+import { formatINR, getPlan } from "@/data/pricing";
+import { cn } from "@/lib/utils";
 
-const rows = [
-  { label: "Day-to-day billing during internet outages", cloud: false, birstock: true },
-  { label: "One-time lifetime licence option", cloud: false, birstock: true },
-  { label: "Business records stored on your own PC", cloud: false, birstock: true },
-  { label: "Backup to your own Google Drive", cloud: false, birstock: true },
-  { label: "Barcode billing without server round-trips", cloud: false, birstock: true },
+const columns = ["Mobile-first billing apps", "Traditional accounting ERPs", "BirStock"] as const;
+
+const rows: { label: string; values: [string, string, string] }[] = [
+  {
+    label: "How you pay",
+    values: [
+      "Yearly subscription, renew to keep using",
+      "Licence plus yearly AMC, often quoted through dealers",
+      `${formatINR(getPlan("basic").price)}/year, or own it for a one-time ${formatINR(
+        getPlan("lifetime").price
+      )}. All prices published.`,
+    ],
+  },
+  {
+    label: "Where your records live",
+    values: [
+      "Synced to the vendor's cloud",
+      "On your PC",
+      "On your PC, backed up to your own Google Drive",
+    ],
+  },
+  {
+    label: "Built for",
+    values: [
+      "Sending invoices from a phone",
+      "Accountants and bookkeeping",
+      "A busy counter: barcode, touch billing, Hold Cart",
+    ],
+  },
+  {
+    label: "Billing when internet is down",
+    values: ["Varies by app and plan", "Yes", "Yes, after licence activation"],
+  },
+  {
+    label: "Getting started",
+    values: [
+      "Quick, but limited for a full counter",
+      "Usually needs training or a dealer visit",
+      "Live the same day, with free remote setup help",
+    ],
+  },
+  {
+    label: "Billing from your phone",
+    values: [
+      "Yes",
+      "Usually an extra add-on",
+      "Mobile App included in Pro & Lifetime (over shop Wi-Fi)",
+    ],
+  },
 ];
 
 export function Comparison() {
@@ -16,43 +61,79 @@ export function Comparison() {
     <section className="py-20 sm:py-28">
       <Container>
         <SectionHeading
-          eyebrow="BirStock vs. Cloud POS"
-          title="Own your software and your data"
-          description="Typical cloud POS tools rent you software and keep your data on their servers. BirStock runs on your PC - and you can own it outright."
+          eyebrow="Why shops switch to BirStock"
+          title="The control of desktop software. The simplicity of an app."
+          description="Shop owners in India usually choose between a phone billing app and a heavy accounting ERP. BirStock was built to be the option in between, and to let you own it."
         />
 
         <Reveal delay={0.1} className="mt-14">
-          <div className="mx-auto max-w-3xl overflow-hidden rounded-[var(--radius-lg)] border border-border bg-white shadow-[var(--shadow-card)]">
-            <div className="grid grid-cols-[1fr_auto_auto] items-center gap-3 border-b border-border bg-surface-muted px-5 py-4 sm:gap-6 sm:px-8">
-              <span className="text-sm font-semibold text-muted-foreground">Capability</span>
-              <span className="w-20 text-center text-sm font-semibold text-muted-foreground sm:w-28">
-                Cloud POS
-              </span>
-              <span className="w-20 text-center text-sm font-semibold text-primary-darker sm:w-28">
-                BirStock
-              </span>
+          {/* Desktop / tablet table */}
+          <div className="hidden overflow-hidden rounded-[var(--radius-lg)] border border-border bg-white shadow-[var(--shadow-card)] md:block">
+            <div className="grid grid-cols-[1fr_1.2fr_1.2fr_1.4fr] border-b border-border bg-surface-muted">
+              <span className="px-5 py-4 text-sm font-semibold text-muted-foreground" />
+              {columns.map((c) => (
+                <span
+                  key={c}
+                  className={cn(
+                    "px-5 py-4 text-sm font-semibold",
+                    c === "BirStock"
+                      ? "bg-primary text-white"
+                      : "text-muted-foreground"
+                  )}
+                >
+                  {c}
+                </span>
+              ))}
             </div>
-
             {rows.map((row, i) => (
               <div
                 key={row.label}
-                className={
-                  "grid grid-cols-[1fr_auto_auto] items-center gap-3 px-5 py-4 sm:gap-6 sm:px-8" +
-                  (i !== rows.length - 1 ? " border-b border-border" : "")
-                }
+                className={cn(
+                  "grid grid-cols-[1fr_1.2fr_1.2fr_1.4fr]",
+                  i !== rows.length - 1 && "border-b border-border"
+                )}
               >
-                <span className="text-sm text-foreground sm:text-[0.925rem]">{row.label}</span>
-                <span className="flex w-20 justify-center sm:w-28">
-                  <X className="h-5 w-5 text-danger/70" />
-                </span>
-                <span className="flex w-20 justify-center sm:w-28">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-tint text-primary-darker">
-                    <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                  </span>
+                <span className="px-5 py-4 text-sm font-semibold text-foreground">{row.label}</span>
+                <span className="px-5 py-4 text-sm text-muted-foreground">{row.values[0]}</span>
+                <span className="px-5 py-4 text-sm text-muted-foreground">{row.values[1]}</span>
+                <span className="flex gap-2 bg-primary-tint/60 px-5 py-4 text-sm font-medium text-foreground">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" strokeWidth={3} />
+                  {row.values[2]}
                 </span>
               </div>
             ))}
           </div>
+
+          {/* Mobile cards */}
+          <div className="flex flex-col gap-4 md:hidden">
+            {rows.map((row) => (
+              <div
+                key={row.label}
+                className="rounded-[var(--radius-lg)] border border-border bg-white p-5 shadow-[var(--shadow-soft)]"
+              >
+                <p className="font-display text-base font-semibold text-foreground">{row.label}</p>
+                <dl className="mt-3 space-y-2 text-sm">
+                  <div>
+                    <dt className="text-xs font-semibold text-muted-foreground">{columns[0]}</dt>
+                    <dd className="text-muted-foreground">{row.values[0]}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-semibold text-muted-foreground">{columns[1]}</dt>
+                    <dd className="text-muted-foreground">{row.values[1]}</dd>
+                  </div>
+                  <div className="rounded-[var(--radius-sm)] bg-primary-tint p-3">
+                    <dt className="text-xs font-bold text-primary-darker">BirStock</dt>
+                    <dd className="font-medium text-foreground">{row.values[2]}</dd>
+                  </div>
+                </dl>
+              </div>
+            ))}
+          </div>
+
+          <p className="mx-auto mt-6 max-w-3xl text-center text-xs leading-relaxed text-muted-foreground">
+            Comparison is a general summary of popular billing software categories in India based on
+            publicly listed plans, as of November 2026. Features and pricing vary by vendor and plan.
+          </p>
         </Reveal>
       </Container>
     </section>

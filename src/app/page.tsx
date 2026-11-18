@@ -1,7 +1,7 @@
 import { Hero } from "@/components/home/hero";
 import { IndustryStrip } from "@/components/home/industry-strip";
-import { StatsBar } from "@/components/home/stats-bar";
-import { ValuePillars } from "@/components/home/value-pillars";
+import { OurStory } from "@/components/home/our-story";
+import { ProductTour } from "@/components/home/product-tour";
 import { WorkflowShowcase } from "@/components/home/workflow-showcase";
 import { BeyondBilling } from "@/components/home/beyond-billing";
 import { FeaturesGrid } from "@/components/home/features-grid";
@@ -35,17 +35,18 @@ export default function Home() {
   return (
     <>
       <JsonLd data={jsonLd} />
+      {/* The story: who we are -> the problem -> why we're different -> proof -> price -> act */}
       <Hero />
       <IndustryStrip />
-      <StatsBar />
-      <ValuePillars />
-      <WorkflowShowcase />
-      <BeyondBilling />
+      <ClientLogos />
+      <OurStory />
+      <Comparison />
+      <ProductTour />
       <FeaturesGrid />
+      <BeyondBilling />
+      <WorkflowShowcase />
       <PricingTeaser />
       <CustomizationSection />
-      <ClientLogos />
-      <Comparison />
       <FaqPreview />
       <FinalCta />
     </>
