@@ -91,7 +91,7 @@ const faqs = [
   },
   {
     q: "Can I start with a standard plan and customise later?",
-    a: `Yes. Start on Monthly (${formatINR(getPlan("monthly").price)}), Yearly (${formatINR(getPlan("yearly").price)}) or Lifetime (${formatINR(
+    a: `Yes. Start on Basic (${formatINR(getPlan("basic").price)}/year), Pro (${formatINR(getPlan("pro").price)}/year) or Lifetime (${formatINR(
       getPlan("lifetime").price
     )}), and ask for customisation whenever you need it. Your existing data stays on your PC.`,
   },
@@ -265,7 +265,7 @@ export default function CustomBillingSoftwarePage() {
                   ))}
                 </ul>
                 <p className="mt-5 text-xs text-muted-foreground">
-                  Don&apos;t need changes? Standard plans start at {formatINR(getPlan("monthly").price)}/month -{" "}
+                  Don&apos;t need changes? Standard plans start at {formatINR(getPlan("basic").price)}/year -{" "}
                   <Link href="/pricing" className="font-medium text-primary-darker hover:underline">
                     compare plans
                   </Link>

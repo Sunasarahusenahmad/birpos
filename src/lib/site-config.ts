@@ -5,8 +5,8 @@ export const siteConfig = {
   legalName: "Birtik Tech",
   tagline: "Offline POS, GST Billing & Inventory Software",
   description: `Offline-first POS, GST billing & inventory software for Indian shops: barcode billing, Khata, Drive backup & mobile app. From ${formatINR(
-    getPlan("monthly").price
-  )}/month or ${formatINR(getPlan("lifetime").price)} lifetime.`,
+    getPlan("basic").price
+  )}/year or ${formatINR(getPlan("lifetime").price)} lifetime.`,
   url: "https://birstock.com",
   company: "Birtik Tech",
   email: "support@birstock.com",

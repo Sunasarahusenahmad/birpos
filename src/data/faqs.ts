@@ -1,4 +1,4 @@
-import { formatINR, getPlan, pricingSummary } from "@/data/pricing";
+import { LIFETIME_FREE_SUPPORT_MONTHS, SUPPORT_RENEWAL_PRICE, formatINR, getPlan, pricingSummary } from "@/data/pricing";
 
 export type FaqCategory = {
   category: string;
@@ -69,7 +69,7 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         q: "Which plan includes the mobile app?",
-        a: `The BirStock Mobile App is included in the Yearly plan (${formatINR(getPlan("yearly").price)}/year). Lifetime licence holders can add it as a paid add-on.`,
+        a: `The BirStock Mobile App is included in the Pro plan (${formatINR(getPlan("pro").price)}/year) and the Lifetime licence (${formatINR(getPlan("lifetime").price)} one-time). It is not included in the Basic plan.`,
       },
     ],
   },
@@ -124,11 +124,11 @@ export const faqCategories: FaqCategory[] = [
     items: [
       {
         q: "How much does BirStock cost?",
-        a: `BirStock costs ${pricingSummary}. All plans include the full desktop app with POS, inventory, Khata, GST invoices, reports and backup.`,
+        a: `BirStock costs ${pricingSummary}. All plans include desktop POS, inventory, Khata, GST invoices, reports and backup; Pro and Lifetime add every feature and the BirStock Mobile App.`,
       },
       {
         q: "What does the Lifetime licence include?",
-        a: `The ${formatINR(getPlan("lifetime").price)} Lifetime licence is a one-time payment for a permanent licence with all current desktop features and bug-fix updates for them. New feature modules released later, and the BirStock Mobile App, are available as optional add-ons priced per feature.`,
+        a: `The ${formatINR(getPlan("lifetime").price)} Lifetime licence is a one-time payment for a permanent licence with all current desktop features, the BirStock Mobile App and bug-fix updates. It includes ${LIFETIME_FREE_SUPPORT_MONTHS} months of support; after that, support is optional at ${formatINR(SUPPORT_RENEWAL_PRICE)} per year. New feature modules released later are optional add-ons priced per feature.`,
       },
       {
         q: "Can I use BirStock on more than one PC?",

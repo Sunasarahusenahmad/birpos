@@ -27,7 +27,7 @@ import {
   PackagePlus,
   BadgeIndianRupee,
 } from "lucide-react";
-import { formatINR, getPlan } from "@/data/pricing";
+import { LIFETIME_FREE_SUPPORT_MONTHS, SUPPORT_RENEWAL_PRICE, formatINR, getPlan } from "@/data/pricing";
 
 export type LandingPageData = {
   slug: string;
@@ -47,8 +47,8 @@ export type LandingPageData = {
   related: { label: string; href: string }[];
 };
 
-const monthly = formatINR(getPlan("monthly").price);
-const yearly = formatINR(getPlan("yearly").price);
+const basic = formatINR(getPlan("basic").price);
+const pro = formatINR(getPlan("pro").price);
 const lifetime = formatINR(getPlan("lifetime").price);
 
 export const landingPages: Record<string, LandingPageData> = {
@@ -56,7 +56,7 @@ export const landingPages: Record<string, LandingPageData> = {
     slug: "offline-billing-software",
     og: "offline-billing-software",
     seoTitle: "Offline Billing Software for PC & Windows - BirStock",
-    metaDescription: `BirStock is offline billing software for Windows PCs: bill, scan barcodes, manage stock and Khata without internet after activation. Optional Google Drive backup. From ${monthly}/month or ${lifetime} lifetime.`,
+    metaDescription: `BirStock is offline billing software for Windows PCs: bill, scan barcodes, manage stock and Khata without internet after activation. Optional Google Drive backup. From ${basic}/year or ${lifetime} lifetime.`,
     keywords: [
       "offline billing software for pc",
       "desktop billing software",
@@ -79,7 +79,7 @@ export const landingPages: Record<string, LandingPageData> = {
         { icon: ShieldCheck, title: "Your records on your PC", desc: "Products, bills, customers and suppliers are stored in a local database on your own machine." },
         { icon: Printer, title: "Thermal & A4 printing", desc: "Choose a 58mm or 80mm thermal template for receipts or an A4 layout for invoices." },
         { icon: CloudUpload, title: "Optional Google Drive backup", desc: "Keep local backups and, when you're online, back up to your own Google Drive on your schedule." },
-        { icon: Coins, title: "Own it if you prefer", desc: `Pay ${monthly}/month, ${yearly}/year, or a one-time ${lifetime} for a permanent licence.` },
+        { icon: Coins, title: "Own it if you prefer", desc: `Pay ${basic}/year, ${pro}/year, or a one-time ${lifetime} for a permanent licence.` },
       ],
     },
     comparison: {
@@ -90,7 +90,7 @@ export const landingPages: Record<string, LandingPageData> = {
         { label: "Daily billing during an internet outage", birstock: "Keeps working", other: "Usually stops" },
         { label: "Where business records are stored", birstock: "Local database on your PC", other: "Vendor's cloud servers" },
         { label: "Backup", birstock: "Local + your own Google Drive", other: "Vendor-controlled" },
-        { label: "Pricing", birstock: `Monthly, yearly, or ${lifetime} lifetime`, other: "Ongoing subscription" },
+        { label: "Pricing", birstock: `Yearly, or ${lifetime} lifetime`, other: "Ongoing subscription" },
         { label: "When internet is needed", birstock: "Activation, updates, Drive backup, PIN OTP", other: "All the time" },
       ],
     },
@@ -109,7 +109,7 @@ export const landingPages: Record<string, LandingPageData> = {
       },
       {
         q: "Is there a monthly fee?",
-        a: `You choose: ${monthly}/month, ${yearly}/year (includes the BirStock Mobile App), or a one-time ${lifetime} Lifetime licence with no renewals.`,
+        a: `No. You choose: Basic at ${basic}/year, Pro at ${pro}/year (includes the BirStock Mobile App), or a one-time ${lifetime} Lifetime licence with the mobile app and no renewals.`,
       },
     ],
     related: [
@@ -184,7 +184,7 @@ export const landingPages: Record<string, LandingPageData> = {
     og: "billing-software-for-retail-shop",
     seoTitle: "Billing Software for Retail Shops in India - BirStock",
     metaDescription:
-      "Billing software for retail shops: barcode billing, held bills, stock checks, customer Khata, thermal receipts and Excel product import. Works offline on Windows - from ₹799/month.",
+      "Billing software for retail shops: barcode billing, held bills, stock checks, customer Khata, thermal receipts and Excel product import. Works offline on Windows - from ₹999/year.",
     keywords: [
       "billing software for retail shop",
       "retail billing software india",
@@ -310,20 +310,20 @@ export const landingPages: Record<string, LandingPageData> = {
         { icon: InfinityIcon, title: "Permanent licence", desc: "Pay once. Keep using the features included at purchase without renewals." },
         { icon: Receipt, title: "Full desktop app", desc: "POS, GST invoices, inventory, Khata, suppliers, returns, expenses, reports and backup." },
         { icon: RefreshCw, title: "Bug-fix updates", desc: "Keep receiving bug-fix and stability updates for the features you bought." },
+        { icon: Smartphone, title: "Mobile app included", desc: "The BirStock Mobile App comes with every Lifetime licence." },
         { icon: PackagePlus, title: "Add only what you need", desc: "New feature modules released later are optional add-ons, priced per feature." },
-        { icon: Smartphone, title: "Mobile app add-on", desc: "Add the BirStock Mobile App to your Lifetime licence when you need it." },
-        { icon: BadgeIndianRupee, title: "Clear pricing", desc: `${lifetime} one-time. Prefer to start small? Monthly is ${monthly}, Yearly ${yearly}.` },
+        { icon: BadgeIndianRupee, title: "Clear pricing", desc: `${lifetime} one-time with ${LIFETIME_FREE_SUPPORT_MONTHS} months of support, then optional support at ${formatINR(SUPPORT_RENEWAL_PRICE)}/year.` },
       ],
     },
     comparison: {
       heading: "Lifetime vs. subscription",
-      intro: "How the totals compare over a few years (BirStock plans, excluding optional add-ons).",
-      otherLabel: `Monthly plan (${monthly}/mo)`,
+      intro: "How the licence totals compare over a few years (excluding optional support renewals and add-ons).",
+      otherLabel: `Pro plan (${pro}/yr)`,
       rows: [
-        { label: "Year 1", birstock: lifetime, other: formatINR(getPlan("monthly").price * 12) },
-        { label: "After 3 years", birstock: lifetime, other: formatINR(getPlan("monthly").price * 36) },
-        { label: "After 5 years", birstock: lifetime, other: formatINR(getPlan("monthly").price * 60) },
-        { label: "Renewal needed to keep billing", birstock: "No", other: "Yes, every month" },
+        { label: "Year 1", birstock: lifetime, other: formatINR(getPlan("pro").price) },
+        { label: "After 3 years", birstock: lifetime, other: formatINR(getPlan("pro").price * 3) },
+        { label: "After 5 years", birstock: lifetime, other: formatINR(getPlan("pro").price * 5) },
+        { label: "Renewal needed to keep billing", birstock: "No", other: "Yes, every year" },
       ],
     },
     faqs: [
@@ -333,11 +333,11 @@ export const landingPages: Record<string, LandingPageData> = {
       },
       {
         q: "Do I get new features for free?",
-        a: "New feature modules released later are optional add-ons for Lifetime licences, priced per feature. If you want new features included automatically, the Yearly plan includes them during your plan.",
+        a: "New feature modules released later are optional add-ons for Lifetime licences, priced per feature. If you want new features included automatically, the Pro plan includes them during your plan.",
       },
       {
         q: "Is the mobile app included in Lifetime?",
-        a: "The BirStock Mobile App is available as an add-on for Lifetime licences. It is included in the Yearly plan.",
+        a: "Yes. The BirStock Mobile App is included with every Lifetime licence, as it is with the Pro plan.",
       },
     ],
     related: [
@@ -351,7 +351,7 @@ export const landingPages: Record<string, LandingPageData> = {
     slug: "billing-software-with-mobile-app",
     og: "billing-software-with-mobile-app",
     seoTitle: "Billing Software with Mobile App - BirStock",
-    metaDescription: `Desktop billing software with a mobile companion: the BirStock Mobile App pairs your phone with your shop PC over Wi-Fi to make sales and check stock, customers and invoices. Included in the ${yearly}/year plan.`,
+    metaDescription: `Desktop billing software with a mobile companion: the BirStock Mobile App pairs your phone with your shop PC over Wi-Fi to make sales and check stock, customers and invoices. Included in the ${pro}/year Pro plan and the ${lifetime} Lifetime licence.`,
     keywords: [
       "billing software with mobile app",
       "pos software with mobile app",
@@ -373,7 +373,7 @@ export const landingPages: Record<string, LandingPageData> = {
         { icon: Smartphone, title: "Bill from your phone", desc: "Create sales bills from the phone while the desktop stays the main database." },
         { icon: Boxes, title: "Check stock & customers", desc: "View selected stock, customer and invoice details on the go." },
         { icon: RefreshCw, title: "Offline queue", desc: "If the Wi-Fi drops, supported work is queued and syncs after reconnecting." },
-        { icon: Coins, title: "Included in Yearly", desc: `Get the BirStock Mobile App with the ${yearly}/year plan, or as an add-on to Lifetime.` },
+        { icon: Coins, title: "Included in Pro & Lifetime", desc: `Get the BirStock Mobile App with the ${pro}/year Pro plan or the ${lifetime} Lifetime licence.` },
       ],
     },
     faqs: [
@@ -387,7 +387,7 @@ export const landingPages: Record<string, LandingPageData> = {
       },
       {
         q: "Which plan includes the mobile app?",
-        a: `The Yearly plan (${yearly}/year) includes the BirStock Mobile App. Lifetime licence holders can add it as a paid add-on.`,
+        a: `The Pro plan (${pro}/year) and the Lifetime licence (${lifetime} one-time) include the BirStock Mobile App. The Basic plan does not.`,
       },
     ],
     related: [

@@ -1,7 +1,7 @@
 import { LegalPage } from "@/components/shared/legal-page";
 import { siteConfig } from "@/lib/site-config";
 import { pageMetadata } from "@/lib/seo";
-import { TAX_SENTENCE } from "@/data/pricing";
+import { LIFETIME_FREE_SUPPORT_MONTHS, SUPPORT_RENEWAL_PRICE, TAX_SENTENCE, formatINR } from "@/data/pricing";
 
 export const metadata = pageMetadata({
   title: "Terms of Service",
@@ -27,10 +27,12 @@ export default function TermsPage() {
         <h2>License to use BirStock</h2>
         <p>
           A BirStock plan grants you a non-exclusive, non-transferable licence to install and use the
-          BirStock application on the number of PCs covered by your plan. Monthly and Yearly plans are
-          valid for the period paid for. A Lifetime licence is a one-time purchase that does not expire
-          for the features included at the time of purchase. New feature modules and the BirStock Mobile
-          App may be offered to Lifetime licence holders as separately priced add-ons.
+          BirStock application on the number of PCs covered by your plan. Basic and Pro plans are
+          yearly and valid for the period paid for. A Lifetime licence is a one-time purchase that does not expire
+          for the features included at the time of purchase, including the BirStock Mobile App. Lifetime licences
+          include {LIFETIME_FREE_SUPPORT_MONTHS} months of support from purchase; after that, support is available for{" "}
+          {formatINR(SUPPORT_RENEWAL_PRICE)} per year, renewed each year. New feature modules may be offered to
+          Lifetime licence holders as separately priced add-ons.
           BirStock is licensed, not sold - ownership of the underlying software remains with{" "}
           {siteConfig.company}, while you retain full ownership of the business data you create
           within it.
@@ -65,7 +67,7 @@ export default function TermsPage() {
           <a href="/pricing/" className="text-primary-darker hover:underline">
             pricing page
           </a>
-          . Monthly and Yearly plans are paid for each period; to keep using BirStock after a period
+          . Basic and Pro plans are paid yearly; to keep using BirStock after a period
           ends, renew your plan. The Lifetime licence is a one-time payment. {TAX_SENTENCE} Prices may change for
           future purchases and renewals; changes do not affect a period you have already paid for.
         </p>

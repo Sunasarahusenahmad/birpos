@@ -16,8 +16,14 @@ ErrorDocument 404 /404.html
   RewriteRule ^(.*)$ /$1/ [L,R=301]
 </IfModule>
 
+# Correct types so the launch video streams and the poster renders on every host.
+AddType video/mp4 .mp4
+AddType image/webp .webp
+
 <IfModule mod_expires.c>
   ExpiresActive On
+  ExpiresByType video/mp4 "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
   ExpiresByType image/png "access plus 30 days"
   ExpiresByType image/jpeg "access plus 30 days"
   ExpiresByType image/svg+xml "access plus 30 days"

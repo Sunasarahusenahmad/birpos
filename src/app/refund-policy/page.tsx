@@ -16,7 +16,7 @@ export default function RefundPolicyPage() {
         <h2>Trial before you buy</h2>
         <p>
           We encourage every business to request a live demo or trial before purchasing any BirStock
-          plan - Monthly, Yearly or Lifetime - so you can confirm it fits how your counter operates.
+          plan - Basic, Pro or Lifetime - so you can confirm it fits how your counter operates.
           This policy applies to all plans and add-ons.
         </p>
       </div>

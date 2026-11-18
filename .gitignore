@@ -36,3 +36,6 @@ next-env.d.ts
 
 # private screenshot notes, PDFs and QR (contains local IP) - never publish
 /Screenshots-private/
+
+# original launch video master (too big to deploy; web copy lives in public/video)
+/video-source/

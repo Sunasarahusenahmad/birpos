@@ -449,7 +449,7 @@ export const features: Feature[] = [
       points: [
         "The phone and the desktop PC must be on the same local network (Wi-Fi/LAN) to pair and sync.",
         "The BirStock Mobile App is a companion, not a full desktop replacement - setup, reports, backups and settings stay on the desktop.",
-        "Included with the Yearly plan. Available as an add-on for Lifetime licences.",
+        "Included with the Pro plan and the Lifetime licence. Not included in the Basic plan.",
       ],
     },
     workflow: [
@@ -477,7 +477,7 @@ export const features: Feature[] = [
       },
       {
         q: "Which plans include the BirStock Mobile App?",
-        a: "The BirStock Mobile App is included in the Yearly plan. Lifetime licence holders can add it as a paid add-on.",
+        a: "The BirStock Mobile App is included in the Pro plan and the Lifetime licence. It is not included in the Basic plan.",
       },
     ],
     related: ["pos-billing", "inventory-management", "customer-khata"],

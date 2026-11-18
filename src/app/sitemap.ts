@@ -4,6 +4,7 @@ import { features } from "@/data/features";
 import { industries } from "@/data/industries";
 import { landingPages } from "@/data/landing-pages";
 import { absoluteUrl, ogImagePath } from "@/lib/seo";
+import { launchVideo } from "@/data/launch-video";
 
 export const dynamic = "force-static";
 
@@ -49,9 +50,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return entries.map((e) => ({
     url: absoluteUrl(e.path),
-    lastModified: LAST_UPDATED,
+    lastModified: e.path === "/" ? new Date(launchVideo.uploadDate) : LAST_UPDATED,
     changeFrequency: e.changeFrequency,
     priority: e.priority,
     images: [`${siteConfig.url}${ogImagePath(e.og)}`],
+    ...(e.path === "/"
+      ? {
+          videos: [
+            {
+              title: launchVideo.title,
+              description: launchVideo.description,
+              thumbnail_loc: `${siteConfig.url}${launchVideo.thumbnail}`,
+              content_loc: `${siteConfig.url}${launchVideo.src}`,
+              duration: launchVideo.durationSeconds,
+              publication_date: `${launchVideo.uploadDate}T00:00:00+05:30`,
+              family_friendly: "yes" as const,
+            },
+          ],
+        }
+      : {}),
   }));
 }

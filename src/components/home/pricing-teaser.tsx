@@ -9,8 +9,8 @@ export function PricingTeaser() {
       <Container>
         <SectionHeading
           eyebrow="Pricing"
-          title="Simple plans. Pay monthly, yearly, or once."
-          description="Every plan includes the full desktop app. Yearly adds the BirStock Mobile App."
+          title="Simple plans. Pay yearly, or once."
+          description="Every plan includes desktop billing with full support. Pro and Lifetime add every feature and the BirStock Mobile App."
         />
         <div className="mt-14">
           <PricingCards compact />

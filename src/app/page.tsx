@@ -14,7 +14,9 @@ import { FinalCta } from "@/components/home/final-cta";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/site-config";
 import { flatFaqs } from "@/data/faqs";
-import { faqSchema, graph, pageMetadata, webPageSchema } from "@/lib/seo";
+import { faqSchema, graph, pageMetadata, videoObjectSchema, webPageSchema } from "@/lib/seo";
+import { LaunchVideo } from "@/components/home/launch-video";
+import { launchVideo } from "@/data/launch-video";
 
 const title = `${siteConfig.name} - Offline POS, GST Billing & Inventory Software`;
 
@@ -29,7 +31,8 @@ export const metadata = pageMetadata({
 export default function Home() {
   const jsonLd = graph(
     webPageSchema({ name: title, description: siteConfig.description, path: "/", og: "home" }),
-    faqSchema(flatFaqs.slice(0, 6))
+    faqSchema(flatFaqs.slice(0, 6)),
+    videoObjectSchema(launchVideo, "/")
   );
 
   return (
@@ -39,6 +42,7 @@ export default function Home() {
       <Hero />
       <IndustryStrip />
       <ClientLogos />
+      <LaunchVideo />
       <OurStory />
       <Comparison />
       <ProductTour />

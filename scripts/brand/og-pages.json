@@ -6,7 +6,7 @@
     "subtitle": "Offline desktop POS, GST invoices, Khata, inventory and Google Drive backup - plus the BirStock Mobile App.",
     "icon": "scan-barcode",
     "chips": [
-      "₹799/month",
+      "₹999/year",
       "₹2,999/year",
       "₹12,999 lifetime"
     ]
@@ -14,12 +14,12 @@
   {
     "key": "pricing",
     "eyebrow": "Pricing",
-    "title": "Pay monthly, yearly, or once",
-    "subtitle": "Every plan includes the full desktop app. Yearly adds the Android & iOS mobile app. Prices exclude GST.",
+    "title": "Pay yearly, or once",
+    "subtitle": "Basic covers desktop billing. Pro and Lifetime add every feature and the Android & iOS mobile app. Prices exclude GST.",
     "icon": "badge-indian-rupee",
     "chips": [
-      "Monthly ₹799",
-      "Yearly ₹2,999",
+      "Basic ₹999/yr",
+      "Pro ₹2,999/yr",
       "Lifetime ₹12,999"
     ]
   },
@@ -90,7 +90,7 @@
     "key": "refund-policy",
     "eyebrow": "Legal",
     "title": "Refund Policy",
-    "subtitle": "How refunds work for BirStock Monthly, Yearly and Lifetime plans.",
+    "subtitle": "How refunds work for BirStock Basic, Pro and Lifetime plans.",
     "icon": "receipt-text"
   },
   {
@@ -132,7 +132,7 @@
     "key": "lifetime-billing-software",
     "eyebrow": "One-Time Licence",
     "title": "Lifetime billing software. Pay once, keep billing.",
-    "subtitle": "A permanent BirStock licence for a one-time ₹12,999 - no renewal to keep billing.",
+    "subtitle": "A permanent BirStock licence with the mobile app for a one-time ₹12,999 - no renewal to keep billing.",
     "icon": "infinity",
     "chips": [
       "₹12,999 one-time"

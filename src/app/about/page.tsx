@@ -32,7 +32,7 @@ const values = [
     icon: IndianRupee,
     title: "Ownership, if you want it",
     description:
-      "A shop owner shouldn't be forced to rent their own cash register forever. Alongside monthly and yearly plans, BirStock offers a one-time lifetime licence.",
+      "A shop owner shouldn't be forced to rent their own cash register forever. Alongside yearly plans, BirStock offers a one-time lifetime licence.",
   },
   {
     icon: ShieldCheck,

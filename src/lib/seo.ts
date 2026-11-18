@@ -191,7 +191,7 @@ export function offersSchema() {
             referenceQuantity: {
               "@type": "QuantitativeValue",
               value: 1,
-              unitCode: plan.billingDuration === "P1M" ? "MON" : "ANN",
+              unitCode: "ANN",
             },
           }
         : {}),
@@ -253,9 +253,9 @@ export function mobileApplicationSchema() {
     isPartOf: { "@id": APP_ID },
     offers: {
       "@type": "Offer",
-      price: plans.find((p) => p.id === "yearly")!.price,
+      price: plans.find((p) => p.id === "pro")!.price,
       priceCurrency: CURRENCY,
-      description: "Included in the BirStock Yearly plan",
+      description: "Included in the BirStock Pro plan and Lifetime licence",
       url: absoluteUrl("/pricing"),
     },
   };
@@ -321,6 +321,38 @@ export function howToSchema(name: string, steps: { step: string; detail: string 
       name: s.step,
       text: s.detail,
     })),
+  };
+}
+
+export function videoObjectSchema(
+  video: {
+    title: string;
+    description: string;
+    src: string;
+    thumbnail: string;
+    duration: string;
+    uploadDate: string;
+    width: number;
+    height: number;
+  },
+  pagePath: string
+) {
+  return {
+    "@type": "VideoObject",
+    "@id": `${absoluteUrl(pagePath)}#launch-video`,
+    name: video.title,
+    description: video.description,
+    thumbnailUrl: [`${siteConfig.url}${video.thumbnail}`],
+    uploadDate: `${video.uploadDate}T00:00:00+05:30`,
+    duration: video.duration,
+    contentUrl: `${siteConfig.url}${video.src}`,
+    encodingFormat: "video/mp4",
+    width: video.width,
+    height: video.height,
+    inLanguage: "en-IN",
+    isFamilyFriendly: true,
+    publisher: { "@id": ORG_ID },
+    about: { "@id": APP_ID },
   };
 }
 

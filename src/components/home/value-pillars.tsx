@@ -21,7 +21,7 @@ const pillars = [
     icon: IndianRupee,
     title: "Pay your way",
     description:
-      `Start at ${formatINR(getPlan("monthly").price)}/month, save with ${formatINR(getPlan("yearly").price)}/year (mobile app included), or pay a one-time ${formatINR(getPlan("lifetime").price)} and own your licence forever.`,
+      `Start at ${formatINR(getPlan("basic").price)}/year, get every feature and the mobile app with Pro at ${formatINR(getPlan("pro").price)}/year, or pay a one-time ${formatINR(getPlan("lifetime").price)} and own your licence forever.`,
   },
   {
     icon: CloudUpload,

@@ -2,28 +2,35 @@
 
 import { useMemo, useState } from "react";
 import { Reveal } from "@/components/motion/reveal";
-import { formatINR, getPlan } from "@/data/pricing";
+import { LIFETIME_FREE_SUPPORT_MONTHS, SUPPORT_RENEWAL_PRICE, formatINR, getPlan } from "@/data/pricing";
 import { cn } from "@/lib/utils";
 
 /** Compares what each BirStock plan costs over a chosen number of years. */
 export function SavingsCalculator() {
   const [years, setYears] = useState(3);
-  const monthly = getPlan("monthly");
-  const yearly = getPlan("yearly");
+  const basic = getPlan("basic");
+  const pro = getPlan("pro");
   const lifetime = getPlan("lifetime");
 
   const rows = useMemo(() => {
+    // Yearly renewals needed to keep support running after the free months end.
+    const renewals = Math.max(0, Math.ceil((years * 12 - LIFETIME_FREE_SUPPORT_MONTHS) / 12));
     const data = [
-      { id: "monthly", label: `Monthly (${formatINR(monthly.price)}/mo)`, total: monthly.price * 12 * years },
-      { id: "yearly", label: `Yearly (${formatINR(yearly.price)}/yr)`, total: yearly.price * years },
+      { id: "basic", label: `Basic (${formatINR(basic.price)}/yr)`, total: basic.price * years },
+      { id: "pro", label: `Pro (${formatINR(pro.price)}/yr)`, total: pro.price * years },
       { id: "lifetime", label: `Lifetime (${formatINR(lifetime.price)} once)`, total: lifetime.price },
+      {
+        id: "lifetime-support",
+        label: `Lifetime + support renewals (${formatINR(SUPPORT_RENEWAL_PRICE)}/yr)`,
+        total: lifetime.price + renewals * SUPPORT_RENEWAL_PRICE,
+      },
     ];
     const max = Math.max(...data.map((d) => d.total));
     const min = Math.min(...data.map((d) => d.total));
     return data.map((d) => ({ ...d, pct: (d.total / max) * 100, best: d.total === min }));
-  }, [years, monthly.price, yearly.price, lifetime.price]);
+  }, [years, basic.price, pro.price, lifetime.price]);
 
-  const breakEvenVsMonthly = Math.ceil(lifetime.price / monthly.price);
+  const breakEvenVsPro = Math.ceil(lifetime.price / pro.price);
 
   return (
     <Reveal>
@@ -79,8 +86,9 @@ export function SavingsCalculator() {
         </div>
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          Lifetime costs less than Monthly after about {breakEvenVsMonthly} months. Yearly includes the BirStock Mobile App
-          mobile app; on Lifetime it is an optional add-on, and future feature modules are priced separately.
+          Lifetime costs less than Pro after about {breakEvenVsPro} years. Pro and Lifetime both include the BirStock
+          Mobile App; Basic does not. Lifetime includes {LIFETIME_FREE_SUPPORT_MONTHS} months of support, then support is
+          optional at {formatINR(SUPPORT_RENEWAL_PRICE)}/year.
         </p>
       </div>
     </Reveal>

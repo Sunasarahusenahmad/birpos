@@ -1,13 +1,11 @@
 import { Check, Minus, Smartphone } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { StaggerGroup, StaggerItem } from "@/components/motion/reveal";
-import { TAX_LABEL, formatINR, plans, yearlySaving } from "@/data/pricing";
+import { TAX_LABEL, formatINR, plans } from "@/data/pricing";
 import { cn } from "@/lib/utils";
 
 /** The three plan cards. `compact` trims the feature lists for the home page teaser. */
 export function PricingCards({ compact = false }: { compact?: boolean }) {
-  const saving = yearlySaving();
-
   return (
     <StaggerGroup className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:items-stretch">
       {plans.map((plan) => {
@@ -50,7 +48,6 @@ export function PricingCards({ compact = false }: { compact?: boolean }) {
               </p>
               <p className="mt-1.5 text-xs font-medium text-primary-darker">
                 {plan.priceNote}
-                {plan.id === "yearly" ? ` · save ${saving.percent}% vs monthly` : null}
               </p>
               <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Best for: {plan.bestFor}
